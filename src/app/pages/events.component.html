@@ -1,0 +1,128 @@
+<a routerLink="/" class="page-back inverse">← Volver al inicio</a>
+<section class="inner-title event-title gallery-head">
+  <span>EVENTOS REALES · GALERÍA MUSIC ON</span>
+  <h1>
+    Momentos que
+    <br />
+    merecían una
+    <i>foto.</i>
+  </h1>
+  <p>
+    Filtra la galería, cambia la forma de verla y abre cualquier evento para
+    conocer los detalles.
+  </p>
+</section>
+<section class="gallery-page">
+  <div class="gallery-toolbar">
+    <div class="filters" aria-label="Filtrar eventos">
+      @for (c of categories; track c) {
+        <button [class.active]="category() === c" (click)="category.set(c)">
+          {{ c }}
+          <small>{{ count(c) }}</small>
+        </button>
+      }
+    </div>
+    <div class="view-switch" aria-label="Modo de visualización">
+      <span>VER COMO</span>
+      <button
+        [class.active]="view() === 'mosaic'"
+        (click)="view.set('mosaic')"
+        title="Mosaico"
+      >
+        ▦
+      </button>
+      <button
+        [class.active]="view() === 'list'"
+        (click)="view.set('list')"
+        title="Lista"
+      >
+        ☷
+      </button>
+    </div>
+  </div>
+  <div class="gallery-count">
+    <span>{{ visible().length }} historias</span>
+    <i></i>
+    <span>Haz clic para ampliar</span>
+  </div>
+  <div class="gallery-items" [class.list-view]="view() === 'list'">
+    @for (e of visible(); track e.id; let i = $index) {
+      <button class="gallery-item" (click)="open(e)">
+        <figure>
+          <img [src]="e.image" [alt]="e.title" loading="lazy" />
+          <span>{{ e.category }}</span>
+          <b>
+            VER
+            <br />
+            EVENTO ↗
+          </b>
+        </figure>
+        <div class="gallery-info">
+          <small>#{{ e.id.toString().padStart(3, "0") }} · {{ e.place }}</small>
+          <h2>{{ e.title }}</h2>
+          <p>{{ e.note }}</p>
+          <div>
+            @for (s of e.services; track s) {
+              <span>{{ s }}</span>
+            }
+          </div>
+        </div>
+      </button>
+    } @empty {
+      <div class="gallery-empty">Todavía no hay eventos en esta categoría.</div>
+    }
+  </div>
+</section>
+@if (active()) {
+  <div
+    class="lightbox"
+    (click)="close()"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="active()!.title"
+  >
+    <button class="lightbox-close" (click)="close()">Cerrar ×</button>
+    <button
+      class="lightbox-nav prev"
+      (click)="$event.stopPropagation(); previous()"
+    >
+      ←
+    </button>
+    <article (click)="$event.stopPropagation()">
+      <div class="lightbox-image">
+        <img [src]="active()!.image" [alt]="active()!.title" />
+        <span>{{ active()!.category }}</span>
+      </div>
+      <div class="lightbox-copy">
+        <small>
+          EVENTO #{{ active()!.id.toString().padStart(3, "0") }} ·
+          {{ active()!.place }} · {{ active()!.date }}
+        </small>
+        <h2>{{ active()!.title }}</h2>
+        <p>{{ active()!.note }}</p>
+        <div>
+          @for (s of active()!.services; track s) {
+            <span>{{ s }}</span>
+          }
+        </div>
+        <a routerLink="/presupuesto" (click)="close()">Quiero algo así →</a>
+      </div>
+    </article>
+    <button
+      class="lightbox-nav next-gallery"
+      (click)="$event.stopPropagation(); next()"
+    >
+      →
+    </button>
+  </div>
+}
+<section class="closing">
+  <div>
+    <span>¿TE INSPIRA ALGUNO?</span>
+    <h2>Cuéntanos qué tienes en mente.</h2>
+  </div>
+  <a routerLink="/presupuesto">
+    Hablar del evento
+    <b>→</b>
+  </a>
+</section>

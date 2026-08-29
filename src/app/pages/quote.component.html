@@ -1,0 +1,102 @@
+<a routerLink="/" class="page-back">← Volver al inicio</a>
+<section class="quote-page simple-quote">
+  <div class="quote-card">
+    @if (step() === 1) {
+      <div class="question">
+        <small>PASO 1 DE 2</small>
+        <h1>
+          ¿Qué vas a
+          <br />
+          <i>celebrar?</i>
+        </h1>
+        <p>Solo necesitamos unos datos básicos para empezar la conversación.</p>
+        <div class="event-options">
+          @for (type of eventTypes; track type.name) {
+            <button
+              [class.selected]="eventType() === type.name"
+              (click)="eventType.set(type.name)"
+            >
+              <span>{{ type.icon }}</span>
+              <b>{{ type.name }}</b>
+              <small>{{ type.note }}</small>
+              <i>{{ eventType() === type.name ? "✓" : "→" }}</i>
+            </button>
+          }
+        </div>
+        <button class="next" [disabled]="!eventType()" (click)="step.set(2)">
+          Siguiente →
+        </button>
+      </div>
+    }
+    @if (step() === 2) {
+      <div class="question">
+        <small>PASO 2 DE 2</small>
+        <h1>¿Qué te interesa?</h1>
+        <p>
+          Marca lo que tengas claro. Si dudas, selecciona “Necesito
+          asesoramiento”.
+        </p>
+        <div class="service-options no-money">
+          @for (s of services; track s.id) {
+            <button
+              [class.selected]="selected().includes(s.id)"
+              (click)="toggle(s.id)"
+            >
+              <span>{{ s.icon }}</span>
+              <div>
+                <b>{{ s.name }}</b>
+                <small>{{ s.description }}</small>
+              </div>
+              <i>{{ selected().includes(s.id) ? "✓" : "+" }}</i>
+            </button>
+          }
+        </div>
+        <div class="fields minimal-fields">
+          <label>
+            <span>Tu nombre *</span>
+            <input [(ngModel)]="name" placeholder="Nombre" />
+          </label>
+          <label>
+            <span>Teléfono (opcional)</span>
+            <input
+              [(ngModel)]="phone"
+              placeholder="Para identificar tu consulta"
+            />
+          </label>
+        </div>
+        <div class="step-actions">
+          <button class="back" (click)="step.set(1)">← Atrás</button>
+          <button class="next" [disabled]="!name" (click)="send()">
+            Continuar en WhatsApp →
+          </button>
+        </div>
+      </div>
+    }
+    <aside>
+      <span>LO HABLAMOS CONTIGO</span>
+      <div>
+        <small>EVENTO</small>
+        <b>{{ eventType() || "Pendiente" }}</b>
+      </div>
+      <div>
+        <small>SERVICIOS</small>
+        @if (selected().length) {
+          @for (s of services; track s.id) {
+            @if (selected().includes(s.id)) {
+              <b>{{ s.name }}</b>
+            }
+          }
+        } @else {
+          <b>Por decidir</b>
+        }
+      </div>
+      <div class="human-note">
+        <strong>El resto, por WhatsApp.</strong>
+        <p>
+          Horarios, música, características del espacio y cualquier detalle se
+          concreta hablando directamente.
+        </p>
+      </div>
+    </aside>
+  </div>
+</section>

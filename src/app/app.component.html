@@ -1,0 +1,90 @@
+<header>
+  <a routerLink="/" class="logo">
+    <span>music</span>
+    <b>ON!</b>
+  </a>
+  <nav [class.visible]="open()">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="open.set(false)"
+    >
+      Inicio
+    </a>
+    <a
+      routerLink="/servicios"
+      routerLinkActive="active"
+      (click)="open.set(false)"
+    >
+      Qué hacemos
+    </a>
+    <a
+      routerLink="/eventos"
+      routerLinkActive="active"
+      (click)="open.set(false)"
+    >
+      Galería
+    </a>
+  </nav>
+  <div class="head-tools">
+    <div class="theme-dots">
+      @for (t of themes; track t.id) {
+        <button
+          [style.--color]="t.color"
+          [class.on]="theme() === t.id"
+          [title]="t.name"
+          (click)="changeTheme(t.id)"
+        ></button>
+      }
+    </div>
+    <button
+      class="mode-toggle"
+      type="button"
+      (click)="toggleMode()"
+      [attr.aria-label]="mode() === 'light' ? 'Activar modo noche' : 'Activar modo día'"
+      [title]="mode() === 'light' ? 'Modo noche' : 'Modo día'"
+    >
+      <span aria-hidden="true">{{ mode() === "light" ? "☾" : "☀" }}</span>
+      <span class="mode-label">{{ mode() === "light" ? "Noche" : "Día" }}</span>
+    </button>
+    <a routerLink="/presupuesto" class="quote-link">
+      Cuéntanos tu evento
+      <span>→</span>
+    </a>
+    <button class="hamb" (click)="open.set(!open())">
+      {{ open() ? "Cerrar" : "Menú" }}
+    </button>
+  </div>
+</header>
+<main><router-outlet /></main>
+<a
+  class="floating-wa"
+  href="https://api.whatsapp.com/send?phone=34600613387&text=¡Hola%20Music%20On!%20Quería%20consultaros%20sobre%20un%20evento."
+  target="_blank"
+>
+  <span>WhatsApp</span>
+  <b>↗</b>
+</a>
+<footer>
+  <div class="logo">
+    <span>music</span>
+    <b>ON!</b>
+  </div>
+  <p>
+    DJs, sonido e iluminación
+    <br />
+    para celebrarlo a tu manera.
+  </p>
+  <div>
+    <strong>¿Tienes fecha?</strong>
+    <a routerLink="/presupuesto">Cuéntanos el plan →</a>
+  </div>
+  <div>
+    <a href="https://api.whatsapp.com/send?phone=34600613387" target="_blank">
+      WhatsApp · 600 61 33 87 ↗
+    </a>
+    <span>Sevilla y alrededores</span>
+  </div>
+  <small>© 2026 Music On</small>
+</footer>

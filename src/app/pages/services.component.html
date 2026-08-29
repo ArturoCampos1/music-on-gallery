@@ -1,0 +1,44 @@
+<a routerLink="/" class="page-back">← Volver al inicio</a>
+<section class="inner-title">
+  <span>SERVICIOS, SIN LETRA PEQUEÑA</span>
+  <h1>
+    Elige solo lo
+    <br />
+    que
+    <i>necesitas.</i>
+  </h1>
+  <p>
+    Te explicamos qué aporta cada servicio. Después terminamos de concretarlo
+    contigo por WhatsApp.
+  </p>
+</section>
+<section class="service-catalog no-prices">
+  @for (s of services; track s.n) {
+    <article>
+      <div class="service-top">
+        <span>{{ s.n }}</span>
+        <i>{{ s.icon }}</i>
+      </div>
+      <h2>{{ s.title }}</h2>
+      <p>{{ s.text }}</p>
+      <div class="includes">
+        <b>QUÉ PODEMOS INCLUIR</b>
+        @for (item of s.includes; track item) {
+          <span>✓ {{ item }}</span>
+        }
+      </div>
+      <a routerLink="/presupuesto" [queryParams]="{ servicio: s.id }">
+        Me interesa →
+      </a>
+    </article>
+  }
+</section>
+<section class="help-box">
+  <span>¿NO SABES QUÉ EQUIPO NECESITAS?</span>
+  <h2>
+    No pasa nada.
+    <br />
+    Te orientamos por WhatsApp.
+  </h2>
+  <a routerLink="/presupuesto" class="btn solid">Contarnos el evento →</a>
+</section>

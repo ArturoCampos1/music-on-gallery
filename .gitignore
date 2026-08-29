@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.angular/
+
+# Material de vídeo original no utilizado en esta galería.
+*.MOV
+*.mp4
+
