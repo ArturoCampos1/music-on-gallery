@@ -1,5 +1,6 @@
-import { Component, signal } from "@angular/core";
-import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { AfterViewInit, Component, OnDestroy, inject, signal } from "@angular/core";
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { filter } from "rxjs";
 type Theme = "azul" | "tomate" | "oliva" | "uva";
 type ColorMode = "light" | "dark";
 @Component({
@@ -8,7 +9,9 @@ type ColorMode = "light" | "dark";
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: "./app.component.html",
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit, OnDestroy {
+  private readonly router = inject(Router);
+  private revealObserver?: IntersectionObserver;
   open = signal(false);
   theme = signal<Theme>(
     (localStorage.getItem("music-on-theme") as Theme) || "azul",
@@ -25,6 +28,42 @@ export class AppComponent {
   constructor() {
     document.documentElement.dataset["theme"] = this.theme();
     document.documentElement.dataset["mode"] = this.mode();
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => requestAnimationFrame(() => this.prepareReveal()));
+  }
+  ngAfterViewInit() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.documentElement.classList.add("reveal-ready");
+    this.revealObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-revealed");
+          this.revealObserver?.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -7%" },
+    );
+    requestAnimationFrame(() => this.prepareReveal());
+  }
+  ngOnDestroy() {
+    this.revealObserver?.disconnect();
+  }
+  private prepareReveal() {
+    if (!this.revealObserver) return;
+    const selector = [
+      ".hero-copy > *", ".hero-collage", ".choice-strip > *",
+      ".section-intro > *", ".home-services article", ".gallery-teaser > *",
+      ".closing > *", ".inner-title > *", ".service-catalog article",
+      ".help-box > *", ".gallery-toolbar", ".gallery-count", ".gallery-item",
+      ".quote-card",
+    ].join(",");
+    document.querySelectorAll<HTMLElement>(`${selector}:not(.scroll-reveal)`).forEach((element, index) => {
+      element.classList.add("scroll-reveal");
+      element.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 55}ms`);
+      this.revealObserver?.observe(element);
+    });
   }
   changeTheme(t: Theme) {
     this.theme.set(t);

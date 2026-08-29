@@ -18,6 +18,7 @@ type EventItem = {
   templateUrl: "./events.component.html",
 })
 export class EventsComponent {
+  private readonly imageBase = new URL("img/", document.baseURI).href;
   category = signal<Category>("Todos");
   view = signal<View>("mosaic");
   active = signal<EventItem | null>(null);
@@ -35,7 +36,7 @@ export class EventsComponent {
       category: "Fiestas privadas",
       place: "Sevilla",
       date: "2026",
-      image: "img/evento-02.webp",
+      image: `${this.imageBase}evento-02.webp`,
       note: "Música, luces y una pista llena en una celebración muy especial.",
       services: ["DJ", "Sonido", "Iluminación"],
     },
@@ -45,7 +46,7 @@ export class EventsComponent {
       category: "Fiestas privadas",
       place: "Sevilla",
       date: "2026",
-      image: "img/evento-01.webp",
+      image: `${this.imageBase}evento-01.webp`,
       note: "Una sesión pensada para acompañar la energía de cada invitado.",
       services: ["DJ", "Sonido", "Iluminación"],
     },

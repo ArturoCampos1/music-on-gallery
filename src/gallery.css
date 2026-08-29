@@ -21,3 +21,8 @@ button,a{-webkit-tap-highlight-color:transparent}
 @media(max-width:600px){.theme-dots,.mode-label{display:none}.head-tools{gap:8px}.mode-toggle{width:36px;height:36px;justify-content:center;padding:0}.gallery-count span:last-child{display:none}.gallery-toolbar{gap:18px}.filters{width:100%}.filters button{flex:1 1 auto}.teaser-tiles img{border-width:5px}.lightbox-copy{overflow:auto}.floating-wa{bottom:max(18px,env(safe-area-inset-bottom))}}
 @media(max-width:380px){.hero-copy h1,.inner-title h1,.contact h1{font-size:58px}.gallery-item figure,.gallery-item:nth-child(n) figure{height:320px}.question h1{font-size:42px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Aparición sutil al entrar en pantalla. */
+.reveal-ready .scroll-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease var(--reveal-delay,0ms),transform .7s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms);will-change:opacity,transform}
+.reveal-ready .scroll-reveal.is-revealed{opacity:1;transform:none;will-change:auto}
+@media(prefers-reduced-motion:reduce){.reveal-ready .scroll-reveal{opacity:1;transform:none}}
