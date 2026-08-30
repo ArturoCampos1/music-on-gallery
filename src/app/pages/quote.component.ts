@@ -20,10 +20,10 @@ export class QuoteComponent {
   phone = "";
 
   eventTypes = [
-    { name: "Boda", icon: "○", note: "Ceremonia, convite o fiesta" },
-    { name: "Cumpleaños", icon: "✳", note: "Una celebración a tu medida" },
-    { name: "Fiesta privada", icon: "⌁", note: "En casa, hacienda o local" },
-    { name: "Otro evento", icon: "□", note: "Cualquier otro formato" },
+    { name: "Boda", image: "img/event-types/wedding.png", note: "Ceremonia, convite o fiesta" },
+    { name: "Cumpleaños", image: "img/event-types/birthday.png", note: "Una celebración a tu medida" },
+    { name: "Fiesta privada", image: "img/event-types/private-party.png", note: "En casa, hacienda o local" },
+    { name: "Otro evento", image: "img/event-types/custom-event.png", note: "Cualquier otro formato" },
   ];
   services: Service[] = [
     {

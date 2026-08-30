@@ -1,102 +1,177 @@
 <a routerLink="/" class="page-back">← Volver al inicio</a>
+
 <section class="quote-page simple-quote">
-  <div class="quote-card">
-    @if (step() === 1) {
+  <div class="quote-intro">
+    <span>PRESUPUESTO SIN COMPROMISO</span>
+    <h1>Cuéntanos tu <i>evento.</i></h1>
+    <p>Dos pasos rápidos. Después hablamos contigo personalmente por WhatsApp.</p>
+  </div>
+
+  <div class="wizard-shell">
+    <nav class="wizard-progress" aria-label="Progreso del presupuesto">
+      <button
+        type="button"
+        [class.current]="step() === 1"
+        [class.done]="step() > 1"
+        [attr.aria-current]="step() === 1 ? 'step' : null"
+        (click)="step.set(1)"
+      >
+        <b>{{ step() > 1 ? "✓" : "1" }}</b>
+        <span>
+          <strong>Tipo de evento</strong>
+          <small>{{ eventType() || "Por elegir" }}</small>
+        </span>
+      </button>
+      <i aria-hidden="true"></i>
+      <button
+        type="button"
+        [class.current]="step() === 2"
+        [attr.aria-current]="step() === 2 ? 'step' : null"
+        [disabled]="!eventType()"
+        (click)="step.set(2)"
+      >
+        <b>2</b>
+        <span>
+          <strong>Servicios y contacto</strong>
+          <small>Último paso</small>
+        </span>
+      </button>
+    </nav>
+
+    <div class="quote-card">
       <div class="question">
-        <small>PASO 1 DE 2</small>
-        <h1>
-          ¿Qué vas a
-          <br />
-          <i>celebrar?</i>
-        </h1>
-        <p>Solo necesitamos unos datos básicos para empezar la conversación.</p>
-        <div class="event-options">
-          @for (type of eventTypes; track type.name) {
-            <button
-              [class.selected]="eventType() === type.name"
-              (click)="eventType.set(type.name)"
-            >
-              <span>{{ type.icon }}</span>
-              <b>{{ type.name }}</b>
-              <small>{{ type.note }}</small>
-              <i>{{ eventType() === type.name ? "✓" : "→" }}</i>
-            </button>
-          }
-        </div>
-        <button class="next" [disabled]="!eventType()" (click)="step.set(2)">
-          Siguiente →
-        </button>
-      </div>
-    }
-    @if (step() === 2) {
-      <div class="question">
-        <small>PASO 2 DE 2</small>
-        <h1>¿Qué te interesa?</h1>
-        <p>
-          Marca lo que tengas claro. Si dudas, selecciona “Necesito
-          asesoramiento”.
-        </p>
-        <div class="service-options no-money">
-          @for (s of services; track s.id) {
-            <button
-              [class.selected]="selected().includes(s.id)"
-              (click)="toggle(s.id)"
-            >
-              <span>{{ s.icon }}</span>
-              <div>
-                <b>{{ s.name }}</b>
-                <small>{{ s.description }}</small>
-              </div>
-              <i>{{ selected().includes(s.id) ? "✓" : "+" }}</i>
-            </button>
-          }
-        </div>
-        <div class="fields minimal-fields">
-          <label>
-            <span>Tu nombre *</span>
-            <input [(ngModel)]="name" placeholder="Nombre" />
-          </label>
-          <label>
-            <span>Teléfono (opcional)</span>
-            <input
-              [(ngModel)]="phone"
-              placeholder="Para identificar tu consulta"
-            />
-          </label>
-        </div>
-        <div class="step-actions">
-          <button class="back" (click)="step.set(1)">← Atrás</button>
-          <button class="next" [disabled]="!name" (click)="send()">
-            Continuar en WhatsApp →
-          </button>
-        </div>
-      </div>
-    }
-    <aside>
-      <span>LO HABLAMOS CONTIGO</span>
-      <div>
-        <small>EVENTO</small>
-        <b>{{ eventType() || "Pendiente" }}</b>
-      </div>
-      <div>
-        <small>SERVICIOS</small>
-        @if (selected().length) {
-          @for (s of services; track s.id) {
-            @if (selected().includes(s.id)) {
-              <b>{{ s.name }}</b>
+        @if (step() === 1) {
+          <div class="step-heading">
+            <small>PASO 1 DE 2</small>
+            <h2>¿Qué vas a celebrar?</h2>
+            <p>Selecciona la opción que más se parezca a tu evento.</p>
+          </div>
+
+          <div class="event-options">
+            @for (type of eventTypes; track type.name) {
+              <button
+                type="button"
+                [class.selected]="eventType() === type.name"
+                [attr.aria-pressed]="eventType() === type.name"
+                (click)="eventType.set(type.name)"
+              >
+                <span class="event-type-image" aria-hidden="true">
+                  <img
+                    [src]="type.image"
+                    alt=""
+                    width="256"
+                    height="256"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span class="event-option-copy">
+                  <b>{{ type.name }}</b>
+                  <small>{{ type.note }}</small>
+                </span>
+                <i aria-hidden="true">{{ eventType() === type.name ? "✓" : "→" }}</i>
+              </button>
             }
-          }
-        } @else {
-          <b>Por decidir</b>
+          </div>
+
+          <div class="wizard-actions single-action">
+            <span>
+              @if (eventType()) {
+                Has elegido <b>{{ eventType() }}</b>
+              } @else {
+                Elige una opción para continuar
+              }
+            </span>
+            <button class="next" type="button" [disabled]="!eventType()" (click)="step.set(2)">
+              Continuar <b>→</b>
+            </button>
+          </div>
+        }
+
+        @if (step() === 2) {
+          <div class="step-heading">
+            <small>PASO 2 DE 2</small>
+            <h2>¿Qué necesitas?</h2>
+            <p>Puedes elegir varios servicios o pedirnos que te orientemos.</p>
+          </div>
+
+          <div class="service-options no-money">
+            @for (s of services; track s.id) {
+              <button
+                type="button"
+                [class.selected]="selected().includes(s.id)"
+                [attr.aria-pressed]="selected().includes(s.id)"
+                (click)="toggle(s.id)"
+              >
+                <span aria-hidden="true">{{ s.icon }}</span>
+                <div>
+                  <b>{{ s.name }}</b>
+                  <small>{{ s.description }}</small>
+                </div>
+                <i aria-hidden="true">{{ selected().includes(s.id) ? "✓" : "+" }}</i>
+              </button>
+            }
+          </div>
+
+          <div class="contact-fields">
+            <h3>¿Cómo te llamas?</h3>
+            <p>Usaremos estos datos únicamente para identificar tu consulta.</p>
+            <div class="fields minimal-fields">
+              <label>
+                <span>Tu nombre *</span>
+                <input [(ngModel)]="name" name="name" autocomplete="name" placeholder="Escribe tu nombre" required />
+              </label>
+              <label>
+                <span>Teléfono (opcional)</span>
+                <input
+                  [(ngModel)]="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="Ej. 600 000 000"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div class="wizard-actions">
+            <button class="back" type="button" (click)="step.set(1)">← Cambiar evento</button>
+            <button class="next whatsapp-next" type="button" [disabled]="!name" (click)="send()">
+              Continuar en WhatsApp <b>↗</b>
+            </button>
+          </div>
         }
       </div>
-      <div class="human-note">
-        <strong>El resto, por WhatsApp.</strong>
-        <p>
-          Horarios, música, características del espacio y cualquier detalle se
-          concreta hablando directamente.
-        </p>
-      </div>
-    </aside>
+
+      <aside class="quote-summary">
+        <span>TU SOLICITUD</span>
+        <div>
+          <small>EVENTO</small>
+          <b>{{ eventType() || "Todavía sin elegir" }}</b>
+        </div>
+        <div>
+          <small>SERVICIOS</small>
+          @if (selected().length) {
+            @for (s of services; track s.id) {
+              @if (selected().includes(s.id)) {
+                <b>{{ s.name }}</b>
+              }
+            }
+          } @else {
+            <b>Lo decidiremos contigo</b>
+          }
+        </div>
+        <div class="summary-reassurance">
+          <strong>Sin formularios eternos.</strong>
+          <p>Al terminar se abrirá WhatsApp con tu selección preparada. No se envía nada automáticamente.</p>
+        </div>
+        <ul>
+          <li>Respuesta personal</li>
+          <li>Presupuesto adaptado</li>
+          <li>Sin compromiso</li>
+        </ul>
+      </aside>
+    </div>
   </div>
 </section>

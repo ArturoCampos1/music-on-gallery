@@ -1,17 +1,24 @@
 <a routerLink="/" class="page-back">← Volver al inicio</a>
 <section class="inner-title">
-  <span>SERVICIOS, SIN LETRA PEQUEÑA</span>
+  <span>SERVICIOS QUE PUEDES COMBINAR</span>
   <h1>
-    Elige solo lo
+    Combina lo
     <br />
     que
     <i>necesitas.</i>
   </h1>
   <p>
-    Te explicamos qué aporta cada servicio. Después terminamos de concretarlo
-    contigo por WhatsApp.
+    No tienes que elegir solo uno: puedes contratar DJ, sonido, iluminación y
+    efectos juntos o por separado.
   </p>
 </section>
+<aside class="combine-message">
+  <div>
+    <b>Puedes marcar varios servicios.</b>
+    <span>Empieza por el que tengas más claro y añade el resto en el siguiente paso.</span>
+  </div>
+  <a routerLink="/presupuesto">Configurar mi evento →</a>
+</aside>
 <section class="service-catalog no-prices">
   @for (s of services; track s.n) {
     <article>
@@ -28,17 +35,17 @@
         }
       </div>
       <a routerLink="/presupuesto" [queryParams]="{ servicio: s.id }">
-        Me interesa →
+        Empezar con este servicio →
       </a>
     </article>
   }
 </section>
 <section class="help-box">
-  <span>¿NO SABES QUÉ EQUIPO NECESITAS?</span>
+  <span>¿NO SABES QUÉ COMBINACIÓN NECESITAS?</span>
   <h2>
     No pasa nada.
     <br />
     Te orientamos por WhatsApp.
   </h2>
-  <a routerLink="/presupuesto" class="btn solid">Contarnos el evento →</a>
+  <a routerLink="/presupuesto" class="btn solid">Te ayudamos a elegir →</a>
 </section>

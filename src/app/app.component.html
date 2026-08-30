@@ -32,11 +32,23 @@
       @for (t of themes; track t.id) {
         <button
           [style.--color]="t.color"
-          [class.on]="theme() === t.id"
+          [class.on]="!customColor() && theme() === t.id"
           [title]="t.name"
           (click)="changeTheme(t.id)"
         ></button>
       }
+      <label
+        class="custom-color-picker"
+        [class.on]="!!customColor()"
+        title="Elegir un color personalizado"
+      >
+        <input
+          type="color"
+          [value]="customColor() || '#d8903d'"
+          aria-label="Elegir un color personalizado"
+          (input)="changeCustomColor($any($event.target).value)"
+        />
+      </label>
     </div>
     <button
       class="mode-toggle"
