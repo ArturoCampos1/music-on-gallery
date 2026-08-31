@@ -1,27 +1,42 @@
 import { Component, HostListener, computed, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";
+
 type Category = "Todos" | "Bodas" | "Cumpleaños" | "Fiestas privadas" | "Otros";
 type View = "mosaic" | "list";
+type EventMedia = {
+  type: "image" | "video";
+  src: string;
+  poster?: string;
+  alt: string;
+};
 type EventItem = {
   id: number;
   title: string;
   category: Exclude<Category, "Todos">;
   place: string;
   date: string;
-  image: string;
+  cover: string;
   note: string;
   services: string[];
+  media: EventMedia[];
 };
+
 @Component({
   standalone: true,
   imports: [RouterLink],
   templateUrl: "./events.component.html",
 })
 export class EventsComponent {
-  private readonly imageBase = new URL("img/", document.baseURI).href;
+  private readonly eventBase = new URL("eventos/bodas/1/", document.baseURI).href;
+  private readonly fallbackPoster = `${this.eventBase}evento-boda-02.webp`;
   category = signal<Category>("Todos");
   view = signal<View>("mosaic");
   active = signal<EventItem | null>(null);
+  activeMediaIndex = signal(0);
+  activeMedia = computed(() => {
+    const event = this.active();
+    return event?.media[this.activeMediaIndex()] || null;
+  });
   categories: Category[] = [
     "Todos",
     "Bodas",
@@ -31,38 +46,54 @@ export class EventsComponent {
   ];
   events: EventItem[] = [
     {
-      id: 2,
-      title: "Una noche para recordar",
-      category: "Fiestas privadas",
-      place: "Sevilla",
-      date: "2026",
-      image: `${this.imageBase}evento-02.webp`,
-      note: "Música, luces y una pista llena en una celebración muy especial.",
-      services: ["DJ", "Sonido", "Iluminación"],
-    },
-    {
       id: 1,
-      title: "La pista en su mejor momento",
-      category: "Fiestas privadas",
+      title: "Una noche para recordar",
+      category: "Bodas",
       place: "Sevilla",
       date: "2026",
-      image: `${this.imageBase}evento-01.webp`,
-      note: "Una sesión pensada para acompañar la energía de cada invitado.",
+      cover: `${this.eventBase}evento-boda-02.webp`,
+      note: "Una misma fiesta, contada con sus fotos y todos los momentos en vídeo.",
       services: ["DJ", "Sonido", "Iluminación"],
+      media: [
+        {
+          type: "image",
+          src: `${this.eventBase}evento-boda-01.webp`,
+          alt: "Invitados disfrutando de una fiesta privada en Sevilla",
+        },
+        ...[1, 2, 3, 4, 5, 6].map((number) => ({
+          type: "video" as const,
+          src: `${this.eventBase}videos/evento-boda-video-0${number}.mp4`,
+          poster: `${this.eventBase}portadas-video/evento-boda-video-0${number}.webp`,
+          alt: `Vídeo ${number} del evento privado en Sevilla`,
+        })),
+        {
+          type: "image",
+          src: `${this.eventBase}evento-boda-02.webp`,
+          alt: "Equipo de sonido e iluminación preparado para el evento",
+        },
+      ],
     },
   ];
   visible = computed(() =>
     this.category() === "Todos"
       ? this.events
-      : this.events.filter((e) => e.category === this.category()),
+      : this.events.filter((event) => event.category === this.category()),
   );
-  count(c: Category) {
-    return c === "Todos"
+
+  count(category: Category) {
+    return category === "Todos"
       ? this.events.length
-      : this.events.filter((e) => e.category === c).length;
+      : this.events.filter((event) => event.category === category).length;
   }
-  open(e: EventItem) {
-    this.active.set(e);
+  photoCount(event: EventItem) {
+    return event.media.filter((media) => media.type === "image").length;
+  }
+  videoCount(event: EventItem) {
+    return event.media.filter((media) => media.type === "video").length;
+  }
+  open(event: EventItem) {
+    this.active.set(event);
+    this.activeMediaIndex.set(0);
     document.body.style.overflow = "hidden";
   }
   close() {
@@ -70,15 +101,24 @@ export class EventsComponent {
     document.body.style.overflow = "";
   }
   next() {
-    this.move(1);
+    this.moveMedia(1);
   }
   previous() {
-    this.move(-1);
+    this.moveMedia(-1);
   }
-  move(d: number) {
-    const list = this.visible();
-    const i = list.findIndex((e) => e.id === this.active()?.id);
-    this.active.set(list[(i + d + list.length) % list.length]);
+  selectMedia(index: number) {
+    this.activeMediaIndex.set(index);
+  }
+  usePosterFallback(event: Event) {
+    const image = event.currentTarget as HTMLImageElement;
+    if (image.src !== this.fallbackPoster) image.src = this.fallbackPoster;
+  }
+  private moveMedia(direction: number) {
+    const media = this.active()?.media || [];
+    if (!media.length) return;
+    this.activeMediaIndex.update(
+      (index) => (index + direction + media.length) % media.length,
+    );
   }
   @HostListener("document:keydown.escape") onEscape() {
     if (this.active()) this.close();
