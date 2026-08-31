@@ -51,7 +51,7 @@ export class EventsComponent {
       category: "Bodas",
       place: "Sevilla",
       date: "2026",
-      cover: `${this.eventBase}evento-boda-02.webp`,
+      cover: `${this.eventBase}evento-boda-01.webp`,
       note: "Una misma fiesta, contada con sus fotos y todos los momentos en vídeo.",
       services: ["DJ", "Sonido", "Iluminación"],
       media: [
