@@ -53,12 +53,14 @@
     <button
       class="mode-toggle"
       type="button"
+      role="switch"
+      [class.is-dark]="mode() === 'dark'"
+      [attr.aria-checked]="mode() === 'dark'"
       (click)="toggleMode()"
       [attr.aria-label]="mode() === 'light' ? 'Activar modo noche' : 'Activar modo día'"
       [title]="mode() === 'light' ? 'Modo noche' : 'Modo día'"
     >
-      <span aria-hidden="true">{{ mode() === "light" ? "☾" : "☀" }}</span>
-      <span class="mode-label">{{ mode() === "light" ? "Noche" : "Día" }}</span>
+      <span class="mode-thumb" aria-hidden="true">{{ mode() === "light" ? "☀" : "☾" }}</span>
     </button>
     <a routerLink="/presupuesto" class="quote-link">
       Cuéntanos tu evento
@@ -72,7 +74,7 @@
 <main><router-outlet /></main>
 <a
   class="floating-wa"
-  href="https://api.whatsapp.com/send?phone=34600613387&text=¡Hola%20Music%20On!%20Quería%20consultaros%20sobre%20un%20evento."
+  href="https://api.whatsapp.com/send?phone=34675469159&text=¡Hola%20Music%20On!%20Quería%20consultaros%20sobre%20un%20evento."
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Escribir a Music On por WhatsApp"
@@ -97,8 +99,8 @@
     <a routerLink="/presupuesto">Cuéntanos el plan →</a>
   </div>
   <div>
-    <a href="https://api.whatsapp.com/send?phone=34600613387" target="_blank">
-      WhatsApp · 600 61 33 87 ↗
+    <a href="https://api.whatsapp.com/send?phone=34675469159" target="_blank">
+      WhatsApp · +34 675 469 159 ↗
     </a>
     <span>Disponibles en toda Andalucía</span>
   </div>

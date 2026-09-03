@@ -1,12 +1,13 @@
 import { Component, HostListener, computed, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
-type Category = "Todos" | "Bodas" | "Cumpleaños" | "Fiestas privadas" | "Otros";
+type Category = "Todos" | "Bodas" | "Cumpleaños" | "Fiestas privadas" | "Puestas de largo" | "Otros";
 type View = "mosaic" | "list";
 type EventMedia = {
   type: "image" | "video";
   src: string;
   poster?: string;
+  orientation?: "portrait" | "landscape";
   alt: string;
 };
 type EventItem = {
@@ -27,8 +28,8 @@ type EventItem = {
   templateUrl: "./events.component.html",
 })
 export class EventsComponent {
-  private readonly eventBase = new URL("eventos/bodas/1/", document.baseURI).href;
-  private readonly fallbackPoster = `${this.eventBase}evento-boda-02.webp`;
+  private readonly eventBase = new URL("eventos/puestas-de-largo/1/", document.baseURI).href;
+  private readonly weddingBase = new URL("eventos/bodas/1/", document.baseURI).href;
   category = signal<Category>("Todos");
   view = signal<View>("mosaic");
   active = signal<EventItem | null>(null);
@@ -48,29 +49,54 @@ export class EventsComponent {
     {
       id: 1,
       title: "Una noche para recordar",
-      category: "Bodas",
+      category: "Cumpleaños",
       place: "Sevilla",
       date: "2026",
-      cover: `${this.eventBase}evento-boda-01.webp`,
-      note: "Una misma fiesta, contada con sus fotos y todos los momentos en vídeo.",
+      cover: `${this.eventBase}evento-puesta-de-largo-01.webp`,
+      note: "Una puesta de largo, contada con sus fotos y todos los momentos en vídeo.",
       services: ["DJ", "Sonido", "Iluminación"],
       media: [
         {
           type: "image",
-          src: `${this.eventBase}evento-boda-01.webp`,
-          alt: "Invitados disfrutando de una fiesta privada en Sevilla",
+          src: `${this.eventBase}evento-puesta-de-largo-01.webp`,
+          alt: "Invitados disfrutando de una puesta de largo en Sevilla",
         },
         ...[1, 2, 3, 4, 5, 6].map((number) => ({
           type: "video" as const,
-          src: `${this.eventBase}videos/evento-boda-video-0${number}.mp4`,
-          poster: `${this.eventBase}portadas-video/evento-boda-video-0${number}.webp`,
-          alt: `Vídeo ${number} del evento privado en Sevilla`,
+          src: `${this.eventBase}videos/evento-puesta-de-largo-video-0${number}.mp4`,
+          poster: `${this.eventBase}portadas-video/evento-puesta-de-largo-video-0${number}.webp`,
+          orientation: number <= 3 ? "landscape" as const : "portrait" as const,
+          alt: `Vídeo ${number} de la puesta de largo en Sevilla`,
         })),
         {
           type: "image",
-          src: `${this.eventBase}evento-boda-02.webp`,
-          alt: "Equipo de sonido e iluminación preparado para el evento",
+          src: `${this.eventBase}evento-puesta-de-largo-02.webp`,
+          alt: "Equipo de sonido e iluminación preparado para la puesta de largo",
         },
+      ],
+    },
+    {
+      id: 2,
+      title: "Una boda para celebrar",
+      category: "Bodas",
+      place: "Sevilla",
+      date: "2026",
+      cover: `${this.weddingBase}evento-boda-01.webp`,
+      note: "Una boda llena de momentos, música y recuerdos compartidos.",
+      services: ["DJ", "Sonido", "Iluminación"],
+      media: [
+        ...[1, 2, 3].map((number) => ({
+          type: "image" as const,
+          src: `${this.weddingBase}evento-boda-0${number}.webp`,
+          alt: `Foto ${number} de una boda en Sevilla`,
+        })),
+        ...[1, 2].map((number) => ({
+          type: "video" as const,
+          src: `${this.weddingBase}videos/evento-boda-video-0${number}.mp4`,
+          poster: `${this.weddingBase}portadas-video/evento-boda-video-0${number}.webp`,
+          orientation: "portrait" as const,
+          alt: `Vídeo ${number} de una boda en Sevilla`,
+        })),
       ],
     },
   ];
@@ -109,9 +135,9 @@ export class EventsComponent {
   selectMedia(index: number) {
     this.activeMediaIndex.set(index);
   }
-  usePosterFallback(event: Event) {
+  usePosterFallback(event: Event, fallback: string) {
     const image = event.currentTarget as HTMLImageElement;
-    if (image.src !== this.fallbackPoster) image.src = this.fallbackPoster;
+    if (image.src !== fallback) image.src = fallback;
   }
   private moveMedia(direction: number) {
     const media = this.active()?.media || [];

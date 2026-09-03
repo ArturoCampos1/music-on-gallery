@@ -324,3 +324,22 @@ html[data-mode="dark"] .event-media-count{background:var(--ink);color:var(--pape
 html[data-mode="dark"] .lightbox-image.video-media,html[data-mode="dark"] .lightbox-image video{background:#171510}
 @media(max-width:900px){.event-story-card{grid-column:span 6}.lightbox-image video{max-height:48vh}}
 @media(max-width:600px){.event-story-card{grid-column:1/-1}.event-media-count{left:10px;bottom:10px}.media-thumbnails{grid-template-columns:repeat(4,1fr);margin-bottom:16px!important}.lightbox-image>small{right:10px;bottom:10px}.lightbox-copy>a{margin-bottom:10px}}
+
+/* Interruptor compacto para alternar entre día y noche. */
+.mode-toggle{position:relative;display:flex;align-items:center;width:54px;min-width:54px;height:30px;min-height:30px;margin:0;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--soft);color:var(--ink);cursor:pointer;transition:background-color .25s ease,border-color .25s ease}
+.mode-toggle:hover,.mode-toggle:focus-visible{background:var(--soft);border-color:var(--ink);color:var(--ink)}
+.mode-toggle.is-dark{background:#302e29;border-color:#605b50}
+.mode-toggle .mode-thumb{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--white);font-size:13px;line-height:1;box-shadow:0 1px 3px #0002;transform:translateX(0);transition:transform .25s ease,background-color .25s ease,color .25s ease}
+.mode-toggle.is-dark .mode-thumb{transform:translateX(22px);background:var(--accent);color:var(--accentText)}
+html[data-mode="dark"] .mode-toggle:hover,html[data-mode="dark"] .mode-toggle:focus-visible{background:#302e29;color:var(--ink)}
+@media(max-width:600px){.mode-toggle{width:54px;min-width:54px;height:30px;min-height:30px;padding:3px}}
+
+/* Los clips verticales usan un visor proporcionado, no una caja de vídeo horizontal. */
+.lightbox>article.portrait-video{width:min(800px,85vw);grid-template-columns:clamp(280px,45vh,383px) minmax(280px,1fr)}
+.lightbox>article.portrait-video .lightbox-image{background:#090a08}
+.lightbox>article.portrait-video .lightbox-image video{width:100%;height:100%;margin:0;object-fit:cover}
+@media(max-width:900px){.lightbox>article.portrait-video{width:100%;grid-template-columns:1fr}.lightbox>article.portrait-video .lightbox-image video{width:100%;height:100%;object-fit:contain}}
+
+/* Vídeo principal del inicio: ocupa la foto sin mostrar controles. */
+.main-shot video{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.8)}
+html[data-mode="dark"] .main-shot video{filter:saturate(.72) brightness(.88)}

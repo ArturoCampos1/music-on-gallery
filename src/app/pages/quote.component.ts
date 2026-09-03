@@ -78,7 +78,7 @@ export class QuoteComponent {
       `¿Podemos hablar de los detalles?`,
     ].filter(Boolean);
     window.open(
-      `https://api.whatsapp.com/send?phone=34600613387&text=${encodeURIComponent(lines.join("\n"))}`,
+      `https://api.whatsapp.com/send?phone=34675469159&text=${encodeURIComponent(lines.join("\n"))}`,
       "_blank",
     );
   }

@@ -4,5 +4,8 @@ dist/
 
 # Material de vídeo original no utilizado en esta galería.
 *.MOV
+*.mov
 *.mp4
 !public/eventos/**/*.mp4
+!public/media/**/*.mp4
+public/eventos/**/originales/
