@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, inject, signal } from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, computed, inject, signal } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { filter } from "rxjs";
@@ -21,6 +21,14 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   );
   mode = signal<ColorMode>(
     (localStorage.getItem("music-on-mode") as ColorMode) || "light",
+  );
+  logoSrc = computed(() =>
+    new URL(
+      this.mode() === "dark"
+        ? "img/brand/logo-noche.webp"
+        : "img/brand/logo-dia.webp",
+      document.baseURI,
+    ).href,
   );
   customColor = signal<string | null>(localStorage.getItem("music-on-custom-color"));
   themes: { id: Theme; name: string; color: string }[] = [

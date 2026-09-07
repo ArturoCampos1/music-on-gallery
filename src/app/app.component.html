@@ -1,7 +1,6 @@
 <header>
-  <a routerLink="/" class="logo">
-    <span>music</span>
-    <b>ON!</b>
+  <a routerLink="/" class="logo brand-logo" aria-label="Music On · Inicio">
+    <img [src]="logoSrc()" alt="Music On" />
   </a>
   <nav [class.visible]="open()">
     <a
@@ -85,9 +84,8 @@
   </svg>
 </a>
 <footer>
-  <div class="logo">
-    <span>music</span>
-    <b>ON!</b>
+  <div class="logo brand-logo footer-brand">
+    <img [src]="logoSrc()" alt="Music On" />
   </div>
   <p>
     DJs, sonido e iluminación
