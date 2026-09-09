@@ -92,7 +92,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private updateSeo() {
     let route = this.router.routerState.snapshot.root;
     while (route.firstChild) route = route.firstChild;
-    const title = route.title || "DJ para bodas y eventos en Sevilla | Music On";
+    const title = route.title || "DJ para bodas y eventos en Sevilla | pah! eventos";
     const description = route.data["description"] || "DJ profesional, sonido e iluminación para eventos en Sevilla.";
     const url = new URL(this.router.url.split("?")[0], document.baseURI).href;
     this.title.setTitle(title);

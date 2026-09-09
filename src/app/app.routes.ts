@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
-    title: "DJ para bodas y eventos en Sevilla | Music On",
+    title: "DJ para bodas y eventos en Sevilla | pah! eventos",
     data: {
       description: "DJ profesional, sonido e iluminación para bodas, fiestas privadas y eventos en Sevilla. Producción personalizada y presupuesto por WhatsApp.",
     },
@@ -16,7 +16,7 @@ export const routes: Routes = [
   {
     path: "servicios",
     component: ServicesComponent,
-    title: "DJ, sonido e iluminación para eventos en Sevilla | Music On",
+    title: "DJ, sonido e iluminación para eventos en Sevilla | pah! eventos",
     data: {
       description: "Servicios de DJ profesional, equipos de sonido, iluminación y efectos para bodas y eventos en Sevilla y alrededores.",
     },
@@ -24,15 +24,15 @@ export const routes: Routes = [
   {
     path: "eventos",
     component: EventsComponent,
-    title: "Galería de bodas y fiestas en Sevilla | Music On",
+    title: "Galería de bodas y fiestas en Sevilla | pah! eventos",
     data: {
-      description: "Descubre bodas, fiestas privadas y eventos reales con DJ, sonido e iluminación de Music On en Sevilla.",
+      description: "Descubre bodas, fiestas privadas y eventos reales con DJ, sonido e iluminación de pah! eventos en Sevilla.",
     },
   },
   {
     path: "presupuesto",
     component: QuoteComponent,
-    title: "Presupuesto de DJ para tu evento en Sevilla | Music On",
+    title: "Presupuesto de DJ para tu evento en Sevilla | pah! eventos",
     data: {
       description: "Cuéntanos tu boda, cumpleaños o fiesta y solicita un presupuesto personalizado de DJ, sonido e iluminación en Sevilla.",
     },

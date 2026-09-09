@@ -71,7 +71,7 @@ export class QuoteComponent {
           .join(", ")
       : "Necesito asesoramiento";
     const lines = [
-      `¡Hola Music On! Soy ${this.name}.`,
+      `¡Hola pah! eventos! Soy ${this.name}.`,
       `Quiero consultar sobre: ${this.eventType()}.`,
       this.phone ? `Mi teléfono: ${this.phone}.` : "",
       `Me interesa: ${chosen}.`,
