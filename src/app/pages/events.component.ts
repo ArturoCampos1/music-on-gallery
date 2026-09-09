@@ -1,7 +1,7 @@
 import { Component, HostListener, computed, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
-type Category = "Todos" | "Bodas" | "Cumpleaños" | "Fiestas privadas" | "Puestas de largo" | "Otros";
+type Category = "Todos" | "Bodas" | "Cumpleaños" | "Fiestas privadas" | "Puestas de largo" | "Ferias" | "Otros";
 type View = "mosaic" | "list";
 type EventMedia = {
   type: "image" | "video";
@@ -30,6 +30,8 @@ type EventItem = {
 export class EventsComponent {
   private readonly eventBase = new URL("eventos/puestas-de-largo/1/", document.baseURI).href;
   private readonly weddingBase = new URL("eventos/bodas/1/", document.baseURI).href;
+  private readonly fairOneBase = new URL("eventos/ferias/1/", document.baseURI).href;
+  private readonly fairTwoBase = new URL("eventos/ferias/2/", document.baseURI).href;
   category = signal<Category>("Todos");
   view = signal<View>("mosaic");
   active = signal<EventItem | null>(null);
@@ -43,6 +45,7 @@ export class EventsComponent {
     "Bodas",
     "Cumpleaños",
     "Fiestas privadas",
+    "Ferias",
     "Otros",
   ];
   events: EventItem[] = [
@@ -98,6 +101,45 @@ export class EventsComponent {
           alt: `Vídeo ${number} de una boda en Sevilla`,
         })),
       ],
+    },
+    {
+      id: 3,
+      title: "Sonido para vivir la feria",
+      category: "Ferias",
+      place: "Sevilla",
+      date: "2026",
+      cover: `${this.fairOneBase}feria-1-03.webp`,
+      note: "Sonorización profesional y alquiler de equipo para acompañar cada actuación con claridad y potencia.",
+      services: ["Sonorización", "Alquiler de sonido"],
+      media: [
+        ...[1, 2, 3, 4].map((number) => ({
+          type: "image" as const,
+          src: `${this.fairOneBase}feria-1-0${number}.webp`,
+          alt: `Foto ${number} del servicio de sonorización en feria`,
+        })),
+        ...[1, 2, 3, 4].map((number) => ({
+          type: "video" as const,
+          src: `${this.fairOneBase}videos/feria-1-video-0${number}.mp4`,
+          poster: `${this.fairOneBase}portadas-video/feria-1-video-0${number}.webp`,
+          orientation: "portrait" as const,
+          alt: `Vídeo ${number} del servicio de sonorización en feria`,
+        })),
+      ],
+    },
+    {
+      id: 4,
+      title: "Sonido y luces para la feria",
+      category: "Ferias",
+      place: "Sevilla",
+      date: "2026",
+      cover: `${this.fairTwoBase}feria-2-01.webp`,
+      note: "Un montaje integral de sonorización e iluminación preparado para transformar el escenario de la feria.",
+      services: ["Sonorización", "Iluminación"],
+      media: [1, 2, 3, 4].map((number) => ({
+        type: "image" as const,
+        src: `${this.fairTwoBase}feria-2-0${number}.webp`,
+        alt: `Foto ${number} del montaje de sonido e iluminación en feria`,
+      })),
     },
   ];
   visible = computed(() =>
