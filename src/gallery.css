@@ -363,25 +363,8 @@ html[data-mode="dark"] .main-shot video{filter:saturate(.72) brightness(.88)}
   .head-tools{gap:6px}
 }
 
-/* El tercer recurso del collage es vertical: conserva su encuadre original. */
-.teaser-tiles img:nth-child(1),
-.teaser-tiles img:nth-child(2){
-  width:54%;
-  height:68%;
-}
-.teaser-tiles img:nth-child(1){object-position:center 45%}
-.teaser-tiles img:nth-child(2){object-position:center 40%}
-.teaser-tiles img:nth-child(3){
-  left:35%;
-  bottom:-2%;
-  width:30%;
-  height:88%;
-  object-position:center;
-}
-@media(max-width:600px){
-  .teaser-tiles img:nth-child(3){
-    left:29%;
-    width:42%;
-    height:84%;
-  }
-}
+/* Mantiene el collage dentro de su columna incluso con fotos rotadas. */
+.gallery-teaser{max-width:100%;overflow:hidden}
+.gallery-teaser>div{min-width:0}
+.teaser-tiles{max-width:100%}
+.teaser-tiles img{object-position:center}
