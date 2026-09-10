@@ -326,7 +326,7 @@ html[data-mode="dark"] .lightbox-image.video-media,html[data-mode="dark"] .light
 .mode-toggle .mode-thumb{position:absolute;z-index:1;left:9px;top:11px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--white);box-shadow:0 1px 3px #0003;transform:translateX(0);transition:transform .25s ease,background-color .25s ease,color .25s ease}
 .mode-toggle.is-dark .mode-thumb{transform:translateX(24px);background:var(--accent);color:var(--accentText)}
 .mode-toggle .mode-thumb::before{content:"";display:block;width:13px;height:13px;border-radius:50%;background:#f4ad22;box-shadow:0 0 0 2px color-mix(in srgb,#f4ad22 24%,transparent)}
-.mode-toggle.is-dark .mode-thumb::before{width:12px;height:12px;background:#272620;box-shadow:4px -2px 0 0 var(--accentText)}
+.mode-toggle.is-dark .mode-thumb::before{display:none}
 
 /* Los clips verticales usan un visor proporcionado, no una caja de vídeo horizontal. */
 .lightbox>article.portrait-video{width:min(800px,85vw);grid-template-columns:clamp(280px,45vh,383px) minmax(280px,1fr)}
