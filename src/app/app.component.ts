@@ -25,8 +25,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   headerLogoSrc = computed(() =>
     new URL(
       this.mode() === "dark"
-        ? "img/brand/logo-noche-mark.webp"
-        : "img/brand/logo-dia-mark.webp",
+        ? "img/brand/logo-noche-full.webp"
+        : "img/brand/logo-dia-full.webp",
       document.baseURI,
     ).href,
   );
