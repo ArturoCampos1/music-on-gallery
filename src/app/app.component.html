@@ -1,6 +1,6 @@
 <header>
   <a routerLink="/" class="logo brand-logo" aria-label="pah! eventos · Inicio">
-    <img [src]="logoSrc()" alt="pah! eventos" />
+    <img [src]="headerLogoSrc()" alt="pah!" />
   </a>
   <nav [class.visible]="open()">
     <a
@@ -85,7 +85,10 @@
 </a>
 <footer>
   <div class="logo brand-logo footer-brand">
-    <img [src]="logoSrc()" alt="pah! eventos" />
+    <img
+      [src]="footerLogoSrc()"
+      alt="pah! · Eventos, iluminación y sonido"
+    />
   </div>
   <p>
     DJs, sonido e iluminación

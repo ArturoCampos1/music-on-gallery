@@ -341,7 +341,7 @@ html[data-mode="dark"] .main-shot video{filter:saturate(.72) brightness(.88)}
 /* Identidad de marca: variante automática para cada modo de color. */
 .brand-logo{display:block;flex:0 0 auto;line-height:0;letter-spacing:0}
 .brand-logo img{display:block;width:132px;height:auto;max-height:62px;object-fit:contain;object-position:left center}
-.footer-brand img{width:180px;max-height:none}
+.footer-brand img{width:220px;max-height:none}
 
 /* En móvil el interruptor queda integrado entre el logo y el menú. */
 @media(max-width:900px){
@@ -355,7 +355,7 @@ html[data-mode="dark"] .main-shot video{filter:saturate(.72) brightness(.88)}
   .theme-dots{display:none}
   .hamb{min-width:48px;padding:8px 0;text-align:right;color:var(--ink);-webkit-appearance:none;appearance:none}
   .brand-logo img{width:96px;max-height:52px}
-  .footer-brand img{width:150px;max-height:none}
+  .footer-brand img{width:180px;max-height:none}
 }
 @media(max-width:360px){
   header{padding-inline:12px}

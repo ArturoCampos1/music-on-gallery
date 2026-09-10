@@ -22,11 +22,20 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   mode = signal<ColorMode>(
     (localStorage.getItem("music-on-mode") as ColorMode) || "light",
   );
-  logoSrc = computed(() =>
+  headerLogoSrc = computed(() =>
     new URL(
       this.mode() === "dark"
-        ? "img/brand/logo-noche.webp"
-        : "img/brand/logo-dia.webp",
+        ? "img/brand/logo-noche-mark.webp"
+        : "img/brand/logo-dia-mark.webp",
+      document.baseURI,
+    ).href,
+  );
+
+  footerLogoSrc = computed(() =>
+    new URL(
+      this.mode() === "dark"
+        ? "img/brand/logo-noche-full.webp"
+        : "img/brand/logo-dia-full.webp",
       document.baseURI,
     ).href,
   );
