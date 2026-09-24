@@ -22,7 +22,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build -- --base-href /music-on-gallery/
+      - run: npm run build -- --base-href /
       - name: Prepare SPA fallback
         run: cp dist/music-on/browser/index.html dist/music-on/browser/404.html
       - name: Publish gh-pages branch
@@ -31,4 +31,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist/music-on/browser
           publish_branch: gh-pages
-
