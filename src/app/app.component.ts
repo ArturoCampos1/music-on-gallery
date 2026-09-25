@@ -31,14 +31,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     ).href,
   );
 
-  footerLogoSrc = computed(() =>
-    new URL(
-      this.mode() === "dark"
-        ? "img/brand/logo-noche-full.webp"
-        : "img/brand/logo-dia-full.webp",
-      document.baseURI,
-    ).href,
-  );
+  footerLogoSrc = new URL(
+    "img/brand/logo-noche-full.webp",
+    document.baseURI,
+  ).href;
   customColor = signal<string | null>(localStorage.getItem("music-on-custom-color"));
   themes: { id: Theme; name: string; color: string }[] = [
     { id: "azul", name: "Azul verbena", color: "#2655e8" },
