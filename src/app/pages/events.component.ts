@@ -28,10 +28,10 @@ type EventItem = {
   templateUrl: "./events.component.html",
 })
 export class EventsComponent {
-  private readonly eventBase = new URL("eventos/puestas-de-largo/1/", document.baseURI).href;
-  private readonly weddingBase = new URL("eventos/bodas/1/", document.baseURI).href;
-  private readonly fairOneBase = new URL("eventos/ferias/1/", document.baseURI).href;
-  private readonly fairTwoBase = new URL("eventos/ferias/2/", document.baseURI).href;
+  private readonly eventBase = "/eventos/puestas-de-largo/1/";
+  private readonly weddingBase = "/eventos/bodas/1/";
+  private readonly fairOneBase = "/eventos/ferias/1/";
+  private readonly fairTwoBase = "/eventos/ferias/2/";
   category = signal<Category>("Todos");
   view = signal<View>("mosaic");
   active = signal<EventItem | null>(null);

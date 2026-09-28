@@ -5,7 +5,7 @@
     <span>Momentos que merecían una</span>
     <i>foto.</i>
   </h1>
-  <p>Abre cada historia para ver sus fotos y reproducir todos sus vídeos.</p>
+  <p>Descubre bodas, fiestas y ferias reales en Andalucía. Abre cada historia para ver sus fotos y vídeos.</p>
 </section>
 
 <section class="gallery-page">
@@ -34,7 +34,7 @@
     @for (event of visible(); track event.id) {
       <button class="gallery-item event-story-card" type="button" (click)="open(event)">
         <figure>
-          <img [src]="event.cover" [alt]="event.title" loading="lazy" />
+          <img [src]="event.cover" [alt]="event.title" loading="lazy" width="1800" height="1350" />
           <span>{{ event.category }}</span>
           <small class="event-media-count">
             {{ photoCount(event) }} fotos · {{ videoCount(event) }} vídeos
@@ -70,7 +70,7 @@
       @if (activeMedia(); as media) {
         <div class="lightbox-image" [class.video-media]="media.type === 'video'">
           @if (media.type === "image") {
-            <img [src]="media.src" [alt]="media.alt" />
+            <img [src]="media.src" [alt]="media.alt" width="1800" height="1350" />
           } @else {
             <video [src]="media.src" [poster]="media.poster" controls playsinline preload="metadata">
               Tu navegador no puede reproducir este vídeo.
@@ -96,7 +96,7 @@
               [attr.aria-label]="'Abrir ' + (media.type === 'video' ? 'vídeo' : 'foto') + ' ' + (index + 1)"
               (click)="selectMedia(index)"
             >
-              <img [src]="media.poster || media.src" [alt]="media.alt" loading="lazy" (error)="usePosterFallback($event, event.cover)" />
+              <img [src]="media.poster || media.src" [alt]="media.alt" loading="lazy" width="640" height="640" (error)="usePosterFallback($event, event.cover)" />
               @if (media.type === "video") { <b aria-hidden="true">▶</b> }
             </button>
           }

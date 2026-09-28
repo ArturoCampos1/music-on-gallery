@@ -1,1 +1,5 @@
-import { bootstrapApplication } from '@angular/platform-browser';import { provideRouter,withInMemoryScrolling } from '@angular/router';import { AppComponent } from './app/app.component';import { routes } from './app/app.routes';bootstrapApplication(AppComponent,{providers:[provideRouter(routes,withInMemoryScrolling({scrollPositionRestoration:'top'}))]}).catch(console.error);
+import { bootstrapApplication } from "@angular/platform-browser";
+import { AppComponent } from "./app/app.component";
+import { appConfig } from "./app/app.config";
+
+bootstrapApplication(AppComponent, appConfig).catch(console.error);

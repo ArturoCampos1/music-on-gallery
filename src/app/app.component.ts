@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnDestroy, computed, inject, signal } from "@angular/core";
+import { DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { AfterViewInit, Component, OnDestroy, PLATFORM_ID, computed, inject, signal } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { filter } from "rxjs";
@@ -14,28 +15,19 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
+  private readonly document = inject(DOCUMENT);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private revealObserver?: IntersectionObserver;
   open = signal(false);
-  theme = signal<Theme>(
-    (localStorage.getItem("music-on-theme") as Theme) || "azul",
-  );
-  mode = signal<ColorMode>(
-    (localStorage.getItem("music-on-mode") as ColorMode) || "light",
-  );
+  theme = signal<Theme>("azul");
+  mode = signal<ColorMode>("light");
   headerLogoSrc = computed(() =>
-    new URL(
-      this.mode() === "dark"
-        ? "img/brand/logo-noche-mark.webp"
-        : "img/brand/logo-dia-mark.webp",
-      document.baseURI,
-    ).href,
+    this.mode() === "dark"
+      ? "/img/brand/logo-noche-mark.webp"
+      : "/img/brand/logo-dia-mark.webp",
   );
-
-  footerLogoSrc = new URL(
-    "img/brand/logo-noche-full.webp",
-    document.baseURI,
-  ).href;
-  customColor = signal<string | null>(localStorage.getItem("music-on-custom-color"));
+  footerLogoSrc = "/img/brand/logo-noche-full.webp";
+  customColor = signal<string | null>(null);
   themes: { id: Theme; name: string; color: string }[] = [
     { id: "azul", name: "Azul verbena", color: "#2655e8" },
     { id: "tomate", name: "Tomate", color: "#ed4b34" },
@@ -43,27 +35,33 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     { id: "uva", name: "Uva", color: "#7652a8" },
   ];
   constructor() {
-    document.documentElement.dataset["theme"] = this.theme();
-    document.documentElement.dataset["mode"] = this.mode();
-    const customColor = this.customColor();
-    if (customColor && /^#[0-9a-f]{6}$/i.test(customColor)) {
-      this.applyCustomColor(customColor);
-    } else if (customColor) {
-      this.customColor.set(null);
-      localStorage.removeItem("music-on-custom-color");
+    if (this.isBrowser) {
+      this.theme.set((localStorage.getItem("music-on-theme") as Theme) || "azul");
+      this.mode.set((localStorage.getItem("music-on-mode") as ColorMode) || "light");
+      this.customColor.set(localStorage.getItem("music-on-custom-color"));
+      this.document.documentElement.dataset["theme"] = this.theme();
+      this.document.documentElement.dataset["mode"] = this.mode();
+      const customColor = this.customColor();
+      if (customColor && /^#[0-9a-f]{6}$/i.test(customColor)) {
+        this.applyCustomColor(customColor);
+      } else if (customColor) {
+        this.customColor.set(null);
+        localStorage.removeItem("music-on-custom-color");
+      }
     }
     this.updateThemeColor();
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.updateSeo();
-        requestAnimationFrame(() => this.prepareReveal());
+        if (this.isBrowser) requestAnimationFrame(() => this.prepareReveal());
       });
     this.updateSeo();
   }
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    document.documentElement.classList.add("reveal-ready");
+    this.document.documentElement.classList.add("reveal-ready");
     this.revealObserver = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -82,13 +80,13 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private prepareReveal() {
     if (!this.revealObserver) return;
     const selector = [
-      ".hero-copy > *", ".hero-collage", ".choice-strip > *",
-      ".section-intro > *", ".home-services article", ".gallery-teaser > *",
+      ".choice-strip > *", ".section-intro > *", ".home-services article",
+      ".gallery-teaser > *",
       ".closing > *", ".inner-title > *", ".service-catalog article",
       ".help-box > *", ".gallery-toolbar", ".gallery-count", ".gallery-item",
       ".quote-card",
     ].join(",");
-    document.querySelectorAll<HTMLElement>(`${selector}:not(.scroll-reveal)`).forEach((element, index) => {
+    this.document.querySelectorAll<HTMLElement>(`${selector}:not(.scroll-reveal)`).forEach((element, index) => {
       element.classList.add("scroll-reveal");
       element.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 55}ms`);
       this.revealObserver?.observe(element);
@@ -99,26 +97,30 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     while (route.firstChild) route = route.firstChild;
     const title = route.title || "DJ para bodas y eventos en Sevilla | pah! eventos";
     const description = route.data["description"] || "DJ profesional, sonido e iluminación para eventos en Sevilla.";
-    const url = new URL(this.router.url.split("?")[0], document.baseURI).href;
+    const currentPath = this.router.url.split(/[?#]/)[0] || "/";
+    const path = currentPath === "/" ? currentPath : `${currentPath.replace(/\/$/, "")}/`;
+    const url = new URL(path, "https://paheventos.com").href;
     this.title.setTitle(title);
     this.meta.updateTag({ name: "description", content: description });
     this.meta.updateTag({ property: "og:title", content: title });
     this.meta.updateTag({ property: "og:description", content: description });
     this.meta.updateTag({ property: "og:url", content: url });
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    this.meta.updateTag({ name: "twitter:title", content: title });
+    this.meta.updateTag({ name: "twitter:description", content: description });
+    let canonical = this.document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
-      canonical = document.createElement("link");
+      canonical = this.document.createElement("link");
       canonical.rel = "canonical";
-      document.head.appendChild(canonical);
+      this.document.head.appendChild(canonical);
     }
     canonical.href = url;
   }
   changeTheme(t: Theme) {
     this.theme.set(t);
     this.customColor.set(null);
-    document.documentElement.dataset["theme"] = t;
-    document.documentElement.style.removeProperty("--accent");
-    document.documentElement.style.removeProperty("--accentText");
+    this.document.documentElement.dataset["theme"] = t;
+    this.document.documentElement.style.removeProperty("--accent");
+    this.document.documentElement.style.removeProperty("--accentText");
     localStorage.setItem("music-on-theme", t);
     localStorage.removeItem("music-on-custom-color");
     this.updateThemeColor();
@@ -133,7 +135,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   toggleMode() {
     const mode = this.mode() === "light" ? "dark" : "light";
     this.mode.set(mode);
-    document.documentElement.dataset["mode"] = mode;
+    this.document.documentElement.dataset["mode"] = mode;
     localStorage.setItem("music-on-mode", mode);
     if (this.customColor()) this.applyCustomColor(this.customColor()!);
     this.updateThemeColor();
@@ -151,8 +153,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const accent = this.getAccessibleAccent(color);
     const blackContrast = this.contrastRatio(accent, "#171814");
     const whiteContrast = this.contrastRatio(accent, "#ffffff");
-    document.documentElement.style.setProperty("--accent", accent);
-    document.documentElement.style.setProperty(
+    this.document.documentElement.style.setProperty("--accent", accent);
+    this.document.documentElement.style.setProperty(
       "--accentText",
       blackContrast >= whiteContrast ? "#171814" : "#ffffff",
     );
