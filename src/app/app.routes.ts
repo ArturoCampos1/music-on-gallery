@@ -18,7 +18,7 @@ export const routes: Routes = [
     component: ServicesComponent,
     title: "DJ, sonido e iluminación para eventos en Sevilla | pah! eventos",
     data: {
-      description: "Servicios de DJ profesional, equipos de sonido, iluminación y efectos para bodas y eventos en Sevilla y alrededores.",
+      description: "Servicios de DJ profesional, equipos de sonido, iluminación y efectos para bodas y eventos por toda Andalucía.",
     },
   },
   {
