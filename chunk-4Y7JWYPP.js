@@ -1,0 +1,1 @@
+var a={url:"https://paheventos.com",name:"pah! eventos",phone:"+34614143503",phoneDisplay:"+34 614 14 35 03",email:"info@paheventos.com",image:"/eventos/puestas-de-largo/1/evento-puesta-de-largo-02.webp"};function p(t){let e=new URL("https://api.whatsapp.com/send");return e.searchParams.set("phone",a.phone.replace("+","")),t&&e.searchParams.set("text",t),e.href}export{a,p as b};

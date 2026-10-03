@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://paheventos.com/</loc>
-    <lastmod>2026-09-28</lastmod>
-  </url>
-  <url>
-    <loc>https://paheventos.com/servicios/</loc>
-    <lastmod>2026-09-28</lastmod>
-  </url>
-  <url>
-    <loc>https://paheventos.com/eventos/</loc>
-    <lastmod>2026-09-28</lastmod>
-  </url>
-  <url>
-    <loc>https://paheventos.com/presupuesto/</loc>
-    <lastmod>2026-09-28</lastmod>
-  </url>
+  <url><loc>https://paheventos.com/</loc></url>
+  <url><loc>https://paheventos.com/servicios/</loc></url>
+  <url><loc>https://paheventos.com/eventos/</loc></url>
+  <url><loc>https://paheventos.com/presupuesto/</loc></url>
+  <url><loc>https://paheventos.com/videos/boda-sevilla-1/</loc></url>
+  <url><loc>https://paheventos.com/videos/boda-sevilla-2/</loc></url>
+  <url><loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-1/</loc></url>
+  <url><loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-2/</loc></url>
+  <url><loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-3/</loc></url>
+  <url><loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-4/</loc></url>
+  <url><loc>https://paheventos.com/videos/puesta-de-largo-sevilla-1/</loc></url>
+  <url><loc>https://paheventos.com/videos/puesta-de-largo-sevilla-2/</loc></url>
+  <url><loc>https://paheventos.com/videos/puesta-de-largo-sevilla-3/</loc></url>
+  <url><loc>https://paheventos.com/videos/puesta-de-largo-sevilla-4/</loc></url>
+  <url><loc>https://paheventos.com/videos/puesta-de-largo-sevilla-5/</loc></url>
+  <url><loc>https://paheventos.com/videos/puesta-de-largo-sevilla-6/</loc></url>
 </urlset>
