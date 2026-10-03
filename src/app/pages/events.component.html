@@ -2,8 +2,8 @@
 <section class="inner-title event-title gallery-head">
   <span>EVENTOS REALES · GALERÍA PAH! EVENTOS</span>
   <h1>
-    <span>Momentos que merecían una</span>
-    <i>foto.</i>
+    <span>Bodas, fiestas y ferias en</span>
+    <i>Sevilla.</i>
   </h1>
   <p>Descubre bodas, fiestas y ferias reales en Andalucía. Abre cada historia para ver sus fotos y vídeos.</p>
 </section>
@@ -101,7 +101,7 @@
             </button>
           }
         </div>
-        <a routerLink="/presupuesto" (click)="close()">Quiero algo así →</a>
+        <a routerLink="/presupuesto/" (click)="close()">Quiero algo así →</a>
       </div>
     </article>
 
@@ -109,10 +109,22 @@
   </div>
 }
 
+<section class="video-library" aria-labelledby="video-library-title">
+  <h2 id="video-library-title">Vídeos de nuestros eventos</h2>
+  <p>Mira cada vídeo con su reproductor: bodas, puestas de largo y sonorización de ferias en Sevilla.</p>
+  <div class="video-links">
+    @for (video of videos; track video.slug) {
+      <a [routerLink]="'/videos/' + video.slug + '/'">
+        <img [src]="video.poster" alt="" loading="lazy" width="320" height="180" />
+        <span>{{ video.title }} <b aria-hidden="true">→</b></span>
+      </a>
+    }
+  </div>
+</section>
 <section class="closing">
   <div>
     <span>¿TE INSPIRA ESTE EVENTO?</span>
     <h2>Cuéntanos qué tienes en mente.</h2>
   </div>
-  <a routerLink="/presupuesto">Hablar del evento <b>→</b></a>
+  <a routerLink="/presupuesto/">Hablar del evento <b>→</b></a>
 </section>

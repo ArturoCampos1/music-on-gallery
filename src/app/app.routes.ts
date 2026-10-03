@@ -1,11 +1,12 @@
 import { Routes } from "@angular/router";
+import videos from "./data/videos.json";
 
 export const routes: Routes = [
   {
     path: "",
     loadComponent: () =>
       import("./pages/home.component").then((module) => module.HomeComponent),
-    title: "DJ para bodas y eventos en Andalucía | pah! eventos",
+    title: "DJ para bodas y eventos en Sevilla y Andalucía | pah! eventos",
     data: {
       description: "DJ profesional, sonido e iluminación para bodas, fiestas privadas y eventos en Sevilla y toda Andalucía. Presupuesto por WhatsApp.",
     },
@@ -37,5 +38,22 @@ export const routes: Routes = [
       description: "Cuéntanos tu boda, cumpleaños o fiesta y solicita un presupuesto personalizado de DJ, sonido e iluminación en Andalucía.",
     },
   },
-  { path: "**", redirectTo: "" },
+  ...videos.map((video) => ({
+    path: `videos/${video.slug}`,
+    loadComponent: () => import("./pages/video.component").then((module) => module.VideoComponent),
+    title: `${video.title} | pah! eventos`,
+    data: { description: video.description, video },
+  })),
+  {
+    path: "404",
+    loadComponent: () => import("./pages/not-found.component").then((module) => module.NotFoundComponent),
+    title: "Página no encontrada | pah! eventos",
+    data: { noindex: true, description: "La página que buscas no existe. Descubre los servicios y eventos de pah! eventos." },
+  },
+  {
+    path: "**",
+    loadComponent: () => import("./pages/not-found.component").then((module) => module.NotFoundComponent),
+    title: "Página no encontrada | pah! eventos",
+    data: { noindex: true, description: "La página que buscas no existe. Descubre los servicios y eventos de pah! eventos." },
+  },
 ];

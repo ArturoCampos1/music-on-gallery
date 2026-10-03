@@ -1,5 +1,6 @@
 import { Component, HostListener, computed, signal } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import videos from "../data/videos.json";
 
 type Category = "Todos" | "Bodas" | "Cumpleaños" | "Fiestas privadas" | "Puestas de largo" | "Ferias" | "Otros";
 type View = "mosaic" | "list";
@@ -28,6 +29,7 @@ type EventItem = {
   templateUrl: "./events.component.html",
 })
 export class EventsComponent {
+  readonly videos = videos;
   private readonly eventBase = "/eventos/puestas-de-largo/1/";
   private readonly weddingBase = "/eventos/bodas/1/";
   private readonly fairOneBase = "/eventos/ferias/1/";
@@ -45,6 +47,7 @@ export class EventsComponent {
     "Bodas",
     "Cumpleaños",
     "Fiestas privadas",
+    "Puestas de largo",
     "Ferias",
     "Otros",
   ];
@@ -52,7 +55,7 @@ export class EventsComponent {
     {
       id: 1,
       title: "Una noche para recordar",
-      category: "Cumpleaños",
+      category: "Puestas de largo",
       place: "Sevilla",
       date: "2026",
       cover: `${this.eventBase}evento-puesta-de-largo-01.webp`,

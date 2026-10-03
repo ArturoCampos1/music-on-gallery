@@ -3,6 +3,8 @@ import { AfterViewInit, Component, OnDestroy, PLATFORM_ID, computed, inject, sig
 import { Meta, Title } from "@angular/platform-browser";
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { filter } from "rxjs";
+import { SITE, whatsappUrl } from "./site.config";
+import { pageStructuredData } from "./seo";
 type Theme = "azul" | "tomate" | "oliva" | "uva";
 type ColorMode = "light" | "dark";
 @Component({
@@ -12,6 +14,9 @@ type ColorMode = "light" | "dark";
   templateUrl: "./app.component.html",
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
+  readonly contact = SITE;
+  readonly whatsapp = whatsappUrl();
+  readonly whatsappGreeting = whatsappUrl("¡Hola pah! eventos! Quería consultaros sobre un evento.");
   private readonly router = inject(Router);
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
@@ -114,6 +119,42 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       this.document.head.appendChild(canonical);
     }
     canonical.href = url;
+    const video = route.data["video"];
+    const image = new URL(video?.poster || SITE.image, SITE.url).href;
+    this.meta.updateTag({ name: "robots", content: route.data["noindex"]
+      ? "noindex,follow" : "index,follow,max-image-preview:large,max-video-preview:-1" });
+    this.meta.updateTag({ property: "og:type", content: video ? "video.other" : "website" });
+    this.meta.updateTag({ property: "og:image", content: image });
+    this.meta.updateTag({ property: "og:image:alt", content: video?.title || "Sonido e iluminación de pah! eventos en una puesta de largo en Sevilla" });
+    this.meta.updateTag({ name: "twitter:image", content: image });
+    this.meta.updateTag({ name: "twitter:image:alt", content: video?.title || "Sonido e iluminación de pah! eventos en Sevilla" });
+    // Thumbnail dimensions can differ from the encoded video dimensions.
+    this.meta.removeTag('property="og:image:width"');
+    this.meta.removeTag('property="og:image:height"');
+    let structuredData = this.document.getElementById("page-schema");
+    if (!structuredData) {
+      structuredData = this.document.createElement("script");
+      structuredData.id = "page-schema";
+      structuredData.setAttribute("type", "application/ld+json");
+      this.document.head.appendChild(structuredData);
+    }
+    structuredData.textContent = JSON.stringify(pageStructuredData(path, title, description, video, !!route.data["noindex"]))
+      .replace(/</g, "\\u003c");
+    let posterPreload = this.document.querySelector<HTMLLinkElement>('link[data-page-poster]');
+    const poster = video?.poster || (path === "/" ? "/media/inicio/hero-evento.webp" : null);
+    if (poster) {
+      if (!posterPreload) {
+        posterPreload = this.document.createElement("link");
+        posterPreload.rel = "preload";
+        posterPreload.setAttribute("as", "image");
+        posterPreload.setAttribute("data-page-poster", "");
+        posterPreload.setAttribute("fetchpriority", "high");
+        this.document.head.appendChild(posterPreload);
+      }
+      posterPreload.href = poster;
+    } else {
+      posterPreload?.remove();
+    }
   }
   changeTheme(t: Theme) {
     this.theme.set(t);

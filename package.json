@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "ng serve --open",
-    "build": "ng build"
+    "build": "ng build && node scripts/finalize-build.mjs",
+    "check:seo": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "@angular/common": "20.3.32",

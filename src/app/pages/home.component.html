@@ -8,13 +8,13 @@
       <i>tuya.</i>
     </h1>
     <p>
-      La música, el sonido y las luces para que tu evento se sienta auténtico.
+      DJ profesional, sonido e iluminación para bodas y eventos en Sevilla y toda Andalucía.
       Nosotros lo montamos; tú lo celebras.
     </p>
     <div class="hero-buttons">
-      <a routerLink="/presupuesto" class="btn solid">Cuéntanos tu idea →</a>
+      <a routerLink="/presupuesto/" class="btn solid">Cuéntanos tu idea →</a>
       <a
-        href="https://api.whatsapp.com/send?phone=34675469159"
+        [href]="whatsapp"
         target="_blank"
         rel="noopener noreferrer"
         class="btn whatsapp-cta"
@@ -54,6 +54,7 @@
         height="720"
         aria-label="Ambiente de un evento de pah! eventos"
       ></video>
+      <figcaption><a routerLink="/videos/puesta-de-largo-sevilla-2/">Ver el vídeo de esta puesta de largo en Sevilla →</a></figcaption>
     </figure>
     <span class="sticker">
       100%
@@ -67,19 +68,19 @@
 <section class="choice-strip">
   <span>¿QUÉ ESTÁS ORGANIZANDO?</span>
   <div>
-    <a routerLink="/presupuesto" [queryParams]="{ tipo: 'Boda' }">
+    <a routerLink="/presupuesto/" [queryParams]="{ tipo: 'Boda' }">
       Una boda
       <b>→</b>
     </a>
-    <a routerLink="/presupuesto" [queryParams]="{ tipo: 'Cumpleaños' }">
+    <a routerLink="/presupuesto/" [queryParams]="{ tipo: 'Cumpleaños' }">
       Un cumpleaños
       <b>→</b>
     </a>
-    <a routerLink="/presupuesto" [queryParams]="{ tipo: 'Fiesta privada' }">
+    <a routerLink="/presupuesto/" [queryParams]="{ tipo: 'Fiesta privada' }">
       Una fiesta
       <b>→</b>
     </a>
-    <a routerLink="/presupuesto" [queryParams]="{ tipo: 'Otro evento' }">
+    <a routerLink="/presupuesto/" [queryParams]="{ tipo: 'Otro evento' }">
       Algo diferente
       <b>→</b>
     </a>
@@ -89,7 +90,7 @@
   <div class="section-intro">
     <span>LO QUE RESOLVEMOS</span>
     <h2>
-      Luces, sonido y control absoluto de tu evento.
+      DJ, sonido e iluminación para eventos en Sevilla.
     </h2>
     <p>
       Nos encargamos de que la música, el sonido y la iluminación funcionen
@@ -117,7 +118,7 @@
       <p>Iluminación y efectos adaptados al estilo de la celebración.</p>
     </article>
   </div>
-  <a routerLink="/servicios" class="under-link">
+  <a routerLink="/servicios/" class="under-link">
     Ver qué incluye cada servicio →
   </a>
 </section>
@@ -130,29 +131,29 @@
       a tu manera.
     </h2>
     <p>
-      Filtra por tipo, cambia entre mosaico y lista y abre cada historia para
-      verla al detalle.
+      Bodas, puestas de largo y ferias en Sevilla: descubre fotos y vídeos de
+      nuestros montajes de sonido, iluminación y sesiones de DJ.
     </p>
-    <a routerLink="/eventos" class="btn solid">Explorar la galería →</a>
+    <a routerLink="/eventos/" class="btn solid">Explorar la galería →</a>
   </div>
   <div class="teaser-tiles">
     <img
       src="media/home-teasers/feria-2-01.webp"
-      alt="Evento de pah! eventos"
+      alt="Montaje de sonido e iluminación para una feria en Sevilla"
       loading="lazy"
       width="900"
       height="675"
     />
     <img
       src="media/home-teasers/evento-puesta-de-largo-02.webp"
-      alt="Fiesta de pah! eventos"
+      alt="Equipo de sonido e iluminación en una puesta de largo en Sevilla"
       loading="lazy"
       width="900"
       height="675"
     />
     <img
       src="media/home-teasers/feria-1-03.webp"
-      alt="Pista de baile de pah! eventos"
+      alt="Servicio de sonorización para actuaciones en una feria en Sevilla"
       loading="lazy"
       width="900"
       height="506"
@@ -168,7 +169,7 @@
       El resto, por WhatsApp.
     </h2>
   </div>
-  <a routerLink="/presupuesto" class="whatsapp-circle">
+  <a routerLink="/presupuesto/" class="whatsapp-circle">
     <svg class="whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 2a9.72 9.72 0 0 0-8.35 14.7L2.5 21.5l4.93-1.1A9.72 9.72 0 1 0 12 2Zm0 17.72a7.99 7.99 0 0 1-4.08-1.12l-.29-.17-2.92.65.68-2.84-.19-.3A8 8 0 1 1 12 19.72Zm4.39-5.98c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-1.42-.71-2.36-1.27-3.3-2.88-.25-.43.25-.4.71-1.34.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.59 4.12 3.64.57.25 1.02.4 1.37.51.58.19 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
     </svg>

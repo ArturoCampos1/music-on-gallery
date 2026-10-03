@@ -1,6 +1,7 @@
 import { Component, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { ActivatedRoute, RouterLink } from "@angular/router";
+import { whatsappUrl } from "../site.config";
 type Service = { id: string; name: string; description: string; icon: string };
 @Component({
   standalone: true,
@@ -78,8 +79,9 @@ export class QuoteComponent {
       `¿Podemos hablar de los detalles?`,
     ].filter(Boolean);
     window.open(
-      `https://api.whatsapp.com/send?phone=34675469159&text=${encodeURIComponent(lines.join("\n"))}`,
+      whatsappUrl(lines.join("\n")),
       "_blank",
+      "noopener,noreferrer",
     );
   }
 }

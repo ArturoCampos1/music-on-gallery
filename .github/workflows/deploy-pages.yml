@@ -22,9 +22,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build -- --base-href /
-      - name: Prepare SPA fallback
-        run: cp dist/music-on/browser/index.html dist/music-on/browser/404.html
+      - run: npm run build
+      - name: Check prerendered pages and SEO
+        run: npm run check:seo
       - name: Publish gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:

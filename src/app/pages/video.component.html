@@ -1,0 +1,28 @@
+@if (video(); as clip) {
+  <article class="watch-page">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a routerLink="/">Inicio</a><span aria-hidden="true">/</span>
+      <a routerLink="/eventos/">Galería</a><span aria-hidden="true">/</span>
+      <span aria-current="page">{{ clip.title }}</span>
+    </nav>
+    <h1>{{ clip.title }}</h1>
+    <video
+      [src]="clip.src"
+      [poster]="clip.poster"
+      [attr.width]="clip.width"
+      [attr.height]="clip.height"
+      [attr.aria-label]="clip.title"
+      controls
+      playsinline
+      preload="none"
+    >
+      Tu navegador no puede reproducir este vídeo. <a [href]="clip.src">Abrir el vídeo</a>.
+    </video>
+    <p>{{ clip.description }}</p>
+    <div class="watch-links">
+      <a routerLink="/eventos/" class="under-link">Ver más fotos y vídeos →</a>
+      <a routerLink="/servicios/" class="under-link">Servicios de DJ, sonido e iluminación →</a>
+      <a routerLink="/presupuesto/" class="btn solid">Pedir presupuesto para mi evento →</a>
+    </div>
+  </article>
+}
