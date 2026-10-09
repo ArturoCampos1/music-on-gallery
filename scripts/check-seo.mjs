@@ -55,6 +55,12 @@ for (const path of paths) {
     const player = html.match(/<video\b[^>]*>/)?.[0];
     assert.equal(attribute(player, "src"), video.src);
     assert.equal(attribute(player, "poster"), video.poster);
+    assert.equal(attribute(player, "preload"), "metadata");
+    assert.ok(html.includes(video.description), `${path}: missing visible description`);
+    assert.match(video.modifiedDate, /^\d{4}-\d{2}-\d{2}$/);
+    for (const related of videos.filter((item) => item.event === video.event && item.slug !== video.slug)) {
+      assert.ok(html.includes(`href="/videos/${related.slug}/"`), `${path}: missing related video link`);
+    }
     assert.ok(/\bcontrols(?:[\s=>])/.test(player), `${path}: player controls missing`);
     const schema = graph.find((node) => node["@type"] === "VideoObject");
     assert.equal(schema.contentUrl, `${origin}${video.src}`);

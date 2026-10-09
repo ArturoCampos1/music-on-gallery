@@ -180,6 +180,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .watch-page h1{font:clamp(28px,4vw,48px)/1.1 var(--serif);margin:18px 0}
 .watch-page>video{display:block;width:100%;height:min(58vh,560px);object-fit:contain;background:#111;border-radius:4px}
 .watch-page>p{max-width:760px;line-height:1.7;color:var(--muted)}
+.watch-page .video-context{font-size:12px}
+.related-videos{margin-top:48px;border-top:1px solid var(--line);padding-top:28px}
+.related-videos h2{font:32px/1.2 var(--serif)}
 .watch-links{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:24px}
 .video-library,.service-faq{padding:48px 7vw;border-top:1px solid var(--line)}
 .video-library h2,.service-faq h2{font:clamp(32px,4vw,48px)/1.1 var(--serif);margin:0 0 20px}

@@ -8,15 +8,18 @@ const escapeXml = (value) => String(value).replace(/[<>&"']/g, (character) => ({
 
 // No automatic lastmod: a build date is not necessarily a content update.
 const paths = ["/", "/servicios/", "/eventos/", "/presupuesto/", ...videos.map((video) => `/videos/${video.slug}/`)];
+const modifiedDates = new Map(videos.map((video) => [`/videos/${video.slug}/`, video.modifiedDate]));
+modifiedDates.set("/eventos/", "2026-10-09");
 writeFileSync(resolve(root, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${paths.map((path) => `  <url><loc>${origin}${path}</loc></url>`).join("\n")}
+${paths.map((path) => `  <url><loc>${origin}${path}</loc>${modifiedDates.get(path) ? `<lastmod>${modifiedDates.get(path)}</lastmod>` : ""}</url>`).join("\n")}
 </urlset>\n`);
 
 writeFileSync(resolve(root, "video-sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${videos.map((video) => `  <url>
     <loc>${origin}/videos/${video.slug}/</loc>
+    <lastmod>${video.modifiedDate}</lastmod>
     <video:video>
       <video:thumbnail_loc>${origin}${escapeXml(video.poster)}</video:thumbnail_loc>
       <video:title>${escapeXml(video.title)}</video:title>

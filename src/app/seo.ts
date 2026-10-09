@@ -22,7 +22,7 @@ export function pageStructuredData(path: string, title: string, description: str
       "@id": pageId, url, name: title, description, inLanguage: "es",
       isPartOf: { "@id": websiteId }, about: { "@id": businessId },
       ...(path !== "/" ? { breadcrumb: { "@id": `${url}#breadcrumbs` } } : {}),
-      ...(video ? { mainEntity: { "@id": `${url}#video` } } : {}),
+      ...(video ? { mainEntity: { "@id": `${url}#video` }, dateModified: video.modifiedDate } : {}),
     },
   ];
   if (path !== "/") {

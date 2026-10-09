@@ -14,15 +14,27 @@
       [attr.aria-label]="clip.title"
       controls
       playsinline
-      preload="none"
+      preload="metadata"
     >
       Tu navegador no puede reproducir este vídeo. <a [href]="clip.src">Abrir el vídeo</a>.
     </video>
     <p>{{ clip.description }}</p>
+    <p class="video-context">{{ clip.event }} · Sevilla · Duración: {{ duration() }}</p>
     <div class="watch-links">
       <a routerLink="/eventos/" class="under-link">Ver más fotos y vídeos →</a>
       <a routerLink="/servicios/" class="under-link">Servicios de DJ, sonido e iluminación →</a>
       <a routerLink="/presupuesto/" class="btn solid">Pedir presupuesto para mi evento →</a>
     </div>
+    <section class="related-videos" aria-labelledby="related-title">
+      <h2 id="related-title">Más momentos de este evento</h2>
+      <div class="video-links">
+        @for (item of related(); track item.slug) {
+          <a [routerLink]="'/videos/' + item.slug + '/'">
+            <img [src]="item.poster" alt="" loading="lazy" width="320" height="180" />
+            <span>{{ item.title }} <b aria-hidden="true">→</b></span>
+          </a>
+        }
+      </div>
+    </section>
   </article>
 }

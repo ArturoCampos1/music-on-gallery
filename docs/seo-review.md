@@ -1,5 +1,47 @@
 # Revisión SEO — 3 de octubre de 2026
 
+## Seguimiento — 9 de octubre de 2026
+
+Las nuevas capturas muestran 5 páginas indexadas y 13 sin indexar por tres motivos
+que no se ven en la imagen. Ese informe está actualizado al 4 de octubre. El
+informe de vídeos muestra tres páginas con vídeo sin indexar, por dos motivos
+que tampoco aparecen. Dos ejemplos son `/videos/puesta-de-largo-sevilla-3/` y
+`/videos/sonorizacion-feria-sevilla-1/`, rastreados el 5 de octubre. Esto acredita
+descubrimiento de las nuevas páginas, pero no identifica la causa de exclusión.
+
+Comprobación pública de las doce páginas de vídeo:
+
+- HTTP 200, canonical propio y sin `noindex`.
+- Las doce miniaturas responden con HTTP 200.
+- Los doce MP4 responden a peticiones parciales con HTTP 206 y `video/mp4`.
+- Los archivos locales tienen el índice `moov` antes de los datos `mdat`, por
+  lo que ya permiten iniciar la reproducción sin descargar el archivo entero.
+
+No se ha encontrado un bloqueo técnico de acceso que explique las capturas.
+La accesibilidad desde nuestra conexión no sustituye la prueba en directo de
+Search Console ni demuestra que Google haya decidido indexar el contenido.
+
+Mejoras aplicadas en esta revisión:
+
+- Se sustituyen títulos y descripciones numerados y repetitivos por textos que
+  describen las escenas observables de cada vídeo, revisadas en sus miniaturas.
+- Se muestra el tipo de evento y la duración, y se enlazan los otros clips del
+  mismo evento mediante enlaces presentes en el HTML inicial.
+- El reproductor principal precarga sus metadatos para mostrar la duración sin
+  esperar al primer clic. Los vídeos relacionados siguen siendo enlaces con
+  imágenes, sin descargar múltiples reproductores.
+- Se declara la fecha real de esta modificación en las páginas de vídeo y en
+  ambos sitemaps. Las fechas de subida de los archivos se conservan; las fechas
+  de modificación no avanzan automáticamente con cada build.
+- Compilación y comprobaciones SEO correctas; pruebas de Chrome a 1440 y 390 px
+  correctas, incluyendo reproducción y navegación.
+
+Pendiente para un diagnóstico de las exclusiones: abrir las tablas de motivos
+de los informes de páginas y vídeos, y obtener el motivo y las URLs afectadas
+de cada grupo. No eliminar canonical ni `noindex` de errores 404 solo para
+intentar que todos los contadores aparezcan en verde. Los resultados de búsqueda
+se valoran además con consultas, impresiones y clics del informe de Rendimiento.
+
 ## Qué muestran las capturas
 
 Search Console ha detectado un vídeo que no está en una página de visualización.
