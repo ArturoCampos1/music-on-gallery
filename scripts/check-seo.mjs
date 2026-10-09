@@ -51,6 +51,7 @@ for (const path of paths) {
   }
   const video = videos.find((item) => path === `/videos/${item.slug}/`);
   if (video) {
+    assert.ok(!/[\uFFFD?]/.test(video.title + video.description), `${path}: unexpected encoding in video copy`);
     assert.equal((html.match(/<video\b/g) || []).length, 1, `${path}: expected one prominent video`);
     const player = html.match(/<video\b[^>]*>/)?.[0];
     assert.equal(attribute(player, "src"), video.src);
