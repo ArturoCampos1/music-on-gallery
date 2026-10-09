@@ -2,10 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://paheventos.com/videos/boda-sevilla-1/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/bodas/1/portadas-video/evento-boda-video-01.webp</video:thumbnail_loc>
-      <video:title>Boda en Sevilla: vídeo 1</video:title>
-      <video:description>Vídeo 1 de una boda en Sevilla con DJ, sonido e iluminación de pah! eventos. Mira uno de los momentos de esta celebración.</video:description>
+      <video:title>Cabina de DJ y baile en una boda en Sevilla</video:title>
+      <video:description>La pista de una boda en Sevilla, vista desde la cabina del DJ. El v?deo muestra el equipo de mezcla en primer plano y a los invitados bailando bajo la iluminaci?n de la fiesta.</video:description>
       <video:content_loc>https://paheventos.com/eventos/bodas/1/videos/evento-boda-video-01.mp4</video:content_loc>
       <video:duration>15</video:duration>
       <video:publication_date>2026-08-31T23:36:22+02:00</video:publication_date>
@@ -13,10 +14,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/boda-sevilla-2/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/bodas/1/portadas-video/evento-boda-video-02.webp</video:thumbnail_loc>
-      <video:title>Boda en Sevilla: vídeo 2</video:title>
-      <video:description>Vídeo 2 de una boda en Sevilla con DJ, sonido e iluminación de pah! eventos. Mira uno de los momentos de esta celebración.</video:description>
+      <video:title>Sesi?n de DJ durante una boda en Sevilla</video:title>
+      <video:description>Una vista del DJ trabajando durante la fiesta de una boda en Sevilla. Este clip muestra la sesi?n desde detr?s de la cabina, con los invitados y las luces al fondo.</video:description>
       <video:content_loc>https://paheventos.com/eventos/bodas/1/videos/evento-boda-video-02.mp4</video:content_loc>
       <video:duration>25</video:duration>
       <video:publication_date>2026-08-31T23:36:22+02:00</video:publication_date>
@@ -24,10 +26,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-1/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/ferias/1/portadas-video/feria-1-video-01.webp</video:thumbnail_loc>
-      <video:title>Sonorización de feria en Sevilla: vídeo 1</video:title>
-      <video:description>Vídeo 1 del servicio de sonorización en una feria en Sevilla. Un ejemplo del trabajo de sonido y alquiler de equipos de pah! eventos.</video:description>
+      <video:title>Voz y percusi?n en directo en una feria de Sevilla</video:title>
+      <video:description>Un cantante con micr?fono y un percusionista durante una actuaci?n en una feria de Sevilla. El clip muestra el servicio de sonorizaci?n de pah! eventos acompa?ando a los m?sicos en directo.</video:description>
       <video:content_loc>https://paheventos.com/eventos/ferias/1/videos/feria-1-video-01.mp4</video:content_loc>
       <video:duration>13</video:duration>
       <video:publication_date>2026-09-09T18:39:32+02:00</video:publication_date>
@@ -35,10 +38,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-2/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/ferias/1/portadas-video/feria-1-video-02.webp</video:thumbnail_loc>
-      <video:title>Sonorización de feria en Sevilla: vídeo 2</video:title>
-      <video:description>Vídeo 2 del servicio de sonorización en una feria en Sevilla. Un ejemplo del trabajo de sonido y alquiler de equipos de pah! eventos.</video:description>
+      <video:title>Cante y guitarra en una feria de Sevilla</video:title>
+      <video:description>Una cantante act?a junto a un guitarrista en el interior de una caseta de feria en Sevilla. Un fragmento de m?sica en directo con el servicio de sonido de pah! eventos.</video:description>
       <video:content_loc>https://paheventos.com/eventos/ferias/1/videos/feria-1-video-02.mp4</video:content_loc>
       <video:duration>9</video:duration>
       <video:publication_date>2026-09-09T18:39:32+02:00</video:publication_date>
@@ -46,10 +50,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-3/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/ferias/1/portadas-video/feria-1-video-03.webp</video:thumbnail_loc>
-      <video:title>Sonorización de feria en Sevilla: vídeo 3</video:title>
-      <video:description>Vídeo 3 del servicio de sonorización en una feria en Sevilla. Un ejemplo del trabajo de sonido y alquiler de equipos de pah! eventos.</video:description>
+      <video:title>Baile y ambiente de caseta en una feria de Sevilla</video:title>
+      <video:description>El p?blico baila en el interior de una caseta de feria en Sevilla. Este v?deo recoge el ambiente de la celebraci?n durante el servicio de sonorizaci?n de pah! eventos.</video:description>
       <video:content_loc>https://paheventos.com/eventos/ferias/1/videos/feria-1-video-03.mp4</video:content_loc>
       <video:duration>12</video:duration>
       <video:publication_date>2026-09-09T18:39:32+02:00</video:publication_date>
@@ -57,10 +62,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/sonorizacion-feria-sevilla-4/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/ferias/1/portadas-video/feria-1-video-04.webp</video:thumbnail_loc>
-      <video:title>Sonorización de feria en Sevilla: vídeo 4</video:title>
-      <video:description>Vídeo 4 del servicio de sonorización en una feria en Sevilla. Un ejemplo del trabajo de sonido y alquiler de equipos de pah! eventos.</video:description>
+      <video:title>Micr?fono y guitarra para una actuaci?n en Sevilla</video:title>
+      <video:description>Una actuaci?n con voz y guitarra en una caseta de feria de Sevilla. Se pueden ver el micr?fono, el guitarrista y el equipo de sonido junto a los int?rpretes.</video:description>
       <video:content_loc>https://paheventos.com/eventos/ferias/1/videos/feria-1-video-04.mp4</video:content_loc>
       <video:duration>9</video:duration>
       <video:publication_date>2026-09-09T18:39:32+02:00</video:publication_date>
@@ -68,10 +74,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/puesta-de-largo-sevilla-1/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/puestas-de-largo/1/portadas-video/evento-puesta-de-largo-video-01.webp</video:thumbnail_loc>
-      <video:title>Puesta de largo en Sevilla: vídeo 1</video:title>
-      <video:description>Vídeo 1 de una puesta de largo en Sevilla con DJ, sonido e iluminación de pah! eventos. Descubre el ambiente de esta celebración.</video:description>
+      <video:title>Montaje de DJ e iluminaci?n en una puesta de largo</video:title>
+      <video:description>La cabina iluminada del DJ y los altavoces en una puesta de largo en Sevilla. El v?deo permite ver c?mo se distribuye el equipo de sonido y la iluminaci?n alrededor de la zona de baile.</video:description>
       <video:content_loc>https://paheventos.com/eventos/puestas-de-largo/1/videos/evento-puesta-de-largo-video-01.mp4</video:content_loc>
       <video:duration>22</video:duration>
       <video:publication_date>2026-09-04T00:21:18+02:00</video:publication_date>
@@ -79,10 +86,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/puesta-de-largo-sevilla-2/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/puestas-de-largo/1/portadas-video/evento-puesta-de-largo-video-02.webp</video:thumbnail_loc>
-      <video:title>Puesta de largo en Sevilla: vídeo 2</video:title>
-      <video:description>Vídeo 2 de una puesta de largo en Sevilla con DJ, sonido e iluminación de pah! eventos. Descubre el ambiente de esta celebración.</video:description>
+      <video:title>Pista de baile y luces en una puesta de largo en Sevilla</video:title>
+      <video:description>Los invitados disfrutan de la pista de baile en una puesta de largo en Sevilla. Un plano general de la fiesta con iluminaci?n de colores y una figura luminosa entre el p?blico.</video:description>
       <video:content_loc>https://paheventos.com/eventos/puestas-de-largo/1/videos/evento-puesta-de-largo-video-02.mp4</video:content_loc>
       <video:duration>13</video:duration>
       <video:publication_date>2026-09-04T00:21:18+02:00</video:publication_date>
@@ -90,10 +98,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/puesta-de-largo-sevilla-3/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/puestas-de-largo/1/portadas-video/evento-puesta-de-largo-video-03.webp</video:thumbnail_loc>
-      <video:title>Puesta de largo en Sevilla: vídeo 3</video:title>
-      <video:description>Vídeo 3 de una puesta de largo en Sevilla con DJ, sonido e iluminación de pah! eventos. Descubre el ambiente de esta celebración.</video:description>
+      <video:title>Animaci?n luminosa en una puesta de largo en Sevilla</video:title>
+      <video:description>Una figura luminosa destaca entre los invitados de una puesta de largo en Sevilla. Al fondo se ven la cabina del DJ, los altavoces y la iluminaci?n de colores que acompa?a la fiesta.</video:description>
       <video:content_loc>https://paheventos.com/eventos/puestas-de-largo/1/videos/evento-puesta-de-largo-video-03.mp4</video:content_loc>
       <video:duration>12</video:duration>
       <video:publication_date>2026-09-04T00:21:18+02:00</video:publication_date>
@@ -101,10 +110,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/puesta-de-largo-sevilla-4/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/puestas-de-largo/1/portadas-video/evento-puesta-de-largo-video-04.webp</video:thumbnail_loc>
-      <video:title>Puesta de largo en Sevilla: vídeo 4</video:title>
-      <video:description>Vídeo 4 de una puesta de largo en Sevilla con DJ, sonido e iluminación de pah! eventos. Descubre el ambiente de esta celebración.</video:description>
+      <video:title>Equipo de mezcla del DJ bajo iluminaci?n verde</video:title>
+      <video:description>Un primer plano del equipo de mezcla durante una puesta de largo en Sevilla. Los controles de la cabina y la iluminaci?n verde muestran la fiesta desde el puesto de trabajo del DJ.</video:description>
       <video:content_loc>https://paheventos.com/eventos/puestas-de-largo/1/videos/evento-puesta-de-largo-video-04.mp4</video:content_loc>
       <video:duration>19</video:duration>
       <video:publication_date>2026-09-04T00:21:18+02:00</video:publication_date>
@@ -112,10 +122,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/puesta-de-largo-sevilla-5/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/puestas-de-largo/1/portadas-video/evento-puesta-de-largo-video-05.webp</video:thumbnail_loc>
-      <video:title>Puesta de largo en Sevilla: vídeo 5</video:title>
-      <video:description>Vídeo 5 de una puesta de largo en Sevilla con DJ, sonido e iluminación de pah! eventos. Descubre el ambiente de esta celebración.</video:description>
+      <video:title>Controladora y ordenador del DJ en una puesta de largo</video:title>
+      <video:description>La controladora y el ordenador de la cabina del DJ durante una puesta de largo en Sevilla. El clip ofrece una vista cercana del equipo utilizado en la sesi?n, bajo iluminaci?n violeta.</video:description>
       <video:content_loc>https://paheventos.com/eventos/puestas-de-largo/1/videos/evento-puesta-de-largo-video-05.mp4</video:content_loc>
       <video:duration>15</video:duration>
       <video:publication_date>2026-09-04T00:21:18+02:00</video:publication_date>
@@ -123,10 +134,11 @@
   </url>
   <url>
     <loc>https://paheventos.com/videos/puesta-de-largo-sevilla-6/</loc>
+    <lastmod>2026-10-09</lastmod>
     <video:video>
       <video:thumbnail_loc>https://paheventos.com/eventos/puestas-de-largo/1/portadas-video/evento-puesta-de-largo-video-06.webp</video:thumbnail_loc>
-      <video:title>Puesta de largo en Sevilla: vídeo 6</video:title>
-      <video:description>Vídeo 6 de una puesta de largo en Sevilla con DJ, sonido e iluminación de pah! eventos. Descubre el ambiente de esta celebración.</video:description>
+      <video:title>La fiesta vista desde la cabina del DJ en Sevilla</video:title>
+      <video:description>Un breve plano de la pista desde la cabina del DJ en una puesta de largo en Sevilla. El equipo aparece en primer plano y los invitados al fondo bajo la iluminaci?n azul de la sala.</video:description>
       <video:content_loc>https://paheventos.com/eventos/puestas-de-largo/1/videos/evento-puesta-de-largo-video-06.mp4</video:content_loc>
       <video:duration>5</video:duration>
       <video:publication_date>2026-09-04T00:21:18+02:00</video:publication_date>
